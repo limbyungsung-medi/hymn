@@ -137,7 +137,7 @@ input{font:inherit}
   <h4>부를 절</h4>
   <div class="seg" id="verseSeg"></div>
   <h4>시작할 때</h4>
-  <div class="seg" data-k="intro"><button data-v="intro">전주 듣고</button><button data-v="count">박자만 2번</button><button data-v="none">바로</button></div>
+  <div class="seg" data-k="intro"><button data-v="intro">전주 듣고</button><button data-v="count">박자 세고</button><button data-v="none">바로</button></div>
   <h4>다 부른 뒤</h4>
   <div class="seg" data-k="repeat"><button data-v="0">멈춤</button><button data-v="1">처음부터 반복</button></div>
   <h4>악보 화면</h4>
@@ -153,7 +153,7 @@ input{font:inherit}
 
 <script>
 "use strict";
-const BUILD = "2026-10-28-1";
+const BUILD = "2026-10-28-2";
 document.getElementById('build').textContent = 'build ' + BUILD;
 
 /* =====================================================================
@@ -164,8 +164,47 @@ document.getElementById('build').textContent = 'build ' + BUILD;
    ===================================================================== */
 const SONGS = {
   438: { title: "내 영혼이 은총 입어", tonic: "Ab", meter: "6/8", bpm: 56, verses: 3 },
+  502: { title: "빛의 사자들이여", tonic: "G", meter: "4/4", bpm: 92, beatUnits: 4, countBeats: 4, verses: 4 },
   559: { title: "사철에 봄바람 불어 잇고" }
 };
+
+// 502장 — 곡: Lewis E. Jones (1865–1936), 1904년 출판
+//   음표 뒤 ":숫자" = 그 음을 그 길이(16분음표 단위)만큼 끌기, 길이 뒤 "f" = 늘임표
+SONGS[502].data = (function(){
+  const E = {
+    P  : "3 D4 B3 G3 G3|1 D4 B3 G3 G3",
+    M1 : "3 G4 B3 G3 G3|1 G4 B3 G3 G3|3 G4 B3 G3 G3|1 A4 C4 G3 G3|4 B4 D4 G3 G3|3 G4 B3 G3 G3|1 B4 D4 G3 G3",
+    M2 : "8 A4 C4 F#3 D3|8 G4 B3 G3 G2",
+    M3 : "4 A4 D4 F#3 D3|3 A4 D4 F#3 D3|1 G#4 D4 E#3 D3|4 A4 D4 F#3 D3|3 B4 D4 G3 D3|1 A4 C4 F#3 D3",
+    M4 : "4 G4:12 B3 G3 G2:12|4/3 - C4 E3 -|4/3 - C4 E3 -|4/3 - C4 E3 -|4 - B3 D3 -",
+    M6 : "8 A4 C4 F#3 D3|8 G4 B3 G3 E3",
+    M7 : "4 A4 D4 F#3 D3|3 A4 D4 F#3 D3|1 G#4 D4 E#3 D3|4 A4 D4 F#3 D3|3 B4 D4 G3 G3|1 C#5 G4 A3 E3",
+    M8 : "4 D5:12 F#4 A3 D3:12|3 - F#4 A3 -|1 - G4 B3 -|4 - A4 C4 -|4 - - - -",
+    M9 : "2 B4 G4 D4 G3|4 D5 G4 B3 G3|2 B4 G4 D4 G3|4 D5 G4 B3 G3|3 E5 - C4 -|1 D5 - B3 -",
+    M10: "4 B4:12 G4 D4:12 G3|4 - G4 - D3|4 - G4 - G3|4 - - - -",
+    M11: "2 C5 F#4 D4 D3|4 C5 F#4 D4 D3|2 A4 F#4 D4 D3|4 F#4 D4 A3 D3|3 E4 - C4 -|1 D4 - B3 -",
+    M12: "2 B4:12 D4:4 D4:12 G3|2 - - - D3|2 - D4:4 - B2|2 - - - D3|4 - D4 - G2|4 - - - -",
+    M13: "3 B4 G4 D4 G3|1 D5 G4 B3 G3|3 D5 G4 B3 G3|1 B4 G4 D4 G3|8 D5 G4 B3 G3",
+    M14: "3 B4 D4 G3 G3|1 A4 D4 G3 B2|3 G4 E4 C4 C3|1 E4 C4 G3 C3|8 G4 B3 G3 G2",
+    M15: "2 B4 D4 G3 G3|4 D5 D4 B3 G3|2 B4 D4 G3 G3|4 A4 F#4 C4 D3|3 G4 D4 B3 D3|1 F#4 D4 A3 D3",
+    M16: "4 G4:12 D4 B3 G2:12|3 - E4 C4 -|1 - E4 C4 -|4f - D4 B3 -"
+  };
+  const S = (k,sys,x0,x1,part) => ({ev:E[k], sys, x0, x1, part});
+  const verse = [
+    S('P',1,150,273,'v'),  S('M1',1,273,509,'v'), S('M2',1,509,594,'v'), S('M3',1,594,813,'v'), S('M4',1,813,995,'v'),
+    S('P',2,150,249,'v'),  S('M1',2,249,490,'v'), S('M6',2,490,586,'v'), S('M7',2,586,811,'v'), S('M8',2,811,995,'v'),
+    S('M9',3,150,388,'r'), S('M10',3,388,562,'r'),S('M11',3,562,788,'r'),S('M12',3,788,995,'r'),
+    S('M13',4,150,360,'r'),S('M14',4,360,573,'r'),S('M15',4,573,810,'r'),S('M16',4,810,990,'r')
+  ];
+  const intro = verse.slice(14); // 표시된 마지막 줄을 전주로
+  return {
+    img: { w:1080, h:2084, cropTop:360, cropBottom:1860 },
+    systems: { 1:[540,875], 2:[925,1262], 3:[1318,1540], 4:[1595,1818] },
+    lyricRows: { 1:[660,694,728,762], 2:[1044,1078,1112,1146], 3:[1431], 4:[1709] },
+    lyricH: 17,
+    verse, intro
+  };
+})();
 
 // 438장 — 곡: J. M. Black, 1898
 SONGS[438].data = (function(){
@@ -202,7 +241,7 @@ SONGS[438].data = (function(){
 })();
 
 /* ---------------- 음 이름 ---------------- */
-const PC = {C:0,'C#':1,Db:1,D:2,'D#':3,Eb:3,E:4,F:5,'F#':6,Gb:6,G:7,'G#':8,Ab:8,A:9,'A#':10,Bb:10,B:11};
+const PC = {C:0,'C#':1,Db:1,D:2,'D#':3,Eb:3,E:4,'E#':5,F:5,'F#':6,Gb:6,G:7,'G#':8,Ab:8,A:9,'A#':10,Bb:10,B:11};
 const FLAT = ['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B'];
 const KEYNAME = ['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B'];
 const KEYKO = {C:'다',Db:'내림라',D:'라',Eb:'내림마',E:'마',F:'바',Gb:'내림사',G:'사',Ab:'내림가',A:'가',Bb:'내림나',B:'나'};
@@ -305,7 +344,7 @@ async function prepareNotes(song, shift){
   await loadPiano();
   if(sf.piano.state!=='ready') return;
   const set=new Set();
-  for(const ev of planEvents) for(const n of ev.notes) if(n!=null) set.add(n+shift);
+  for(const ev of planEvents) for(const n of ev.notes) if(n) set.add(n.m+shift);
   await Promise.all([...set].map(decodeNote));
 }
 
@@ -361,20 +400,31 @@ let st = null;           // 현재 곡 설정
 let planEvents = [];     // [{u, notes:[S,A,T,B], seg, verse, part, click}]
 const player = { playing:false, paused:false, i:0, next:0, timer:null, log:[], raf:null, wake:null };
 
-function parseEv(s){ return s.split('|').map(x=>{ const p=x.trim().split(/\s+/); return { u:+p[0], notes:p.slice(1,5).map(midi) }; }); }
+function noteTok(t){ if(!t||t==='-') return null; const [n,d]=t.split(':'); return { m:midi(n), d:d?+d:null }; }
+function parseEv(s){ return s.split('|').map(x=>{
+  const p=x.trim().split(/\s+/); let us=p[0]; const ferm=/f$/.test(us); if(ferm) us=us.slice(0,-1);
+  const u = us.includes('/') ? (+us.split('/')[0])/(+us.split('/')[1]) : +us;
+  return { u, ferm, notes:p.slice(1,5).map(noteTok) }; }); }
 
 function buildPlan(){
   const song=SONGS[cur]; planEvents=[];
   if(!song.data) return;
   const D=song.data;
-  const add=(segs,verse,isIntro)=>{ segs.forEach((sg,si)=>{ for(const e of parseEv(sg.ev)) planEvents.push({u:e.u, notes:e.notes, seg:sg, verse, intro:isIntro}); }); };
+  const add=(segs,verse,isIntro)=>{ segs.forEach(sg=>{ for(const e of parseEv(sg.ev)) planEvents.push({u:e.u, ferm:e.ferm, notes:e.notes, seg:sg, verse, intro:isIntro}); }); };
   if(st.intro==='intro') add(D.intro, 0, true);
-  else if(st.intro==='count'){ for(let k=0;k<2;k++) planEvents.push({u:6, notes:[null,null,null,null], click:true, seg:null, verse:0, intro:true}); }
+  else if(st.intro==='count'){ for(let k=0;k<(song.countBeats||2);k++) planEvents.push({u:song.beatUnits||6, notes:[null,null,null,null], click:true, seg:null, verse:0, intro:true}); }
   const vs = selectedVerses();
   for(const v of vs) add(D.verse, v, false);
+  // 실제 길이 계산 (늘임표, 길게 끄는 음)
+  let pos=0; for(const ev of planEvents){ ev.pos=pos; ev.eff=ev.u*(ev.ferm?1.8:1); pos+=ev.u; }
+  planEvents.forEach((ev,i)=>{ for(const n of ev.notes){ if(!n) continue;
+    if(!n.d){ n.effU=ev.eff; continue; }
+    const endPos=ev.pos+n.d; let e=0;
+    for(let j=i;j<planEvents.length;j++){ const q=planEvents[j]; if(q.pos>=endPos-1e-6) break; e+=Math.min(q.u,endPos-q.pos)*(q.eff/q.u); }
+    n.effU=e; } });
 }
 function selectedVerses(){ const n=SONGS[cur].verses||1; let v=st.verses; if(!v||!v.length) v=[...Array(n)].map((_,i)=>i+1); return v.filter(x=>x<=n).sort((a,b)=>a-b); }
-function unitSec(){ const s=SONGS[cur]; return 60/(s.bpm*st.tempo)/6; }
+function unitSec(){ const s=SONGS[cur]; return 60/(s.bpm*st.tempo)/(s.beatUnits||6); }
 
 function gains(){ const base=0.26; return { mel: base*(+st.mel), acc: base*(+st.acc) }; }
 
@@ -391,11 +441,11 @@ function schedule(){
         return;
       }
     }
-    const ev = planEvents[player.i], dur = ev.u*unitSec(), t = player.next;
+    const ev = planEvents[player.i], us = unitSec(), dur = ev.eff*us, t = player.next;
     if(ev.click) click(t, true);
     else {
       const g=gains(), sh=st.shift;
-      ev.notes.forEach((n,k)=>{ if(n==null) return; const vol = k===0 ? g.mel : g.acc*(k===3?1.1:1); playNote(n+sh, t, dur, vol, st.inst); });
+      ev.notes.forEach((n,k)=>{ if(!n) return; const vol = k===0 ? g.mel : g.acc*(k===3?1.1:1); playNote(n.m+sh, t, n.effU*us, vol, st.inst); });
     }
     player.log.push({t, i:player.i}); if(player.log.length>64) player.log.splice(0,32);
     player.next += dur; player.i++;
@@ -468,7 +518,7 @@ function showPos(ev){
   place(hl, sg.x0, y0, sg.x1, y1); hl.classList.remove('hidden');
   const rows=D.lyricRows[sg.sys];
   if(!ev.intro && rows){ const ry = rows.length>1 ? rows[Math.min(ev.verse,rows.length)-1] : rows[0];
-    place(hlL, sg.x0+4, ry-21, sg.x1-4, ry+21); hlL.classList.remove('hidden'); } else hlL.classList.add('hidden');
+    const lh=D.lyricH||21; place(hlL, sg.x0+4, ry-lh, sg.x1-4, ry+lh); hlL.classList.remove('hidden'); } else hlL.classList.add('hidden');
   if(changedSys) scrollToSys(y0,y1);
 }
 let sheetGeom=null; // {scale, cropTop}
@@ -615,7 +665,7 @@ $('restart').onclick=()=>{ const was=player.playing&&!player.paused; stopPlay();
 $('firstNote').onclick=async()=>{
   const s=SONGS[cur]; if(!s.data){ toast('반주 자료가 없습니다'); return; }
   ensureAudio(); if(ctx.state==='suspended') await ctx.resume();
-  const first=parseEv(s.data.verse[0].ev)[0].notes[0]+st.shift;
+  const first=parseEv(s.data.verse[0].ev)[0].notes[0].m+st.shift;
   const root=PC[s.tonic]+st.shift; let r=48+((root%12)+12)%12; if(r>53) r-=12;
   if(st.inst==='piano'){ await loadPiano(); await Promise.all([first,r,r+12,r+16,r+19].map(decodeNote)); }
   const t=ctx.currentTime+0.05, g=gains();
