@@ -98,6 +98,7 @@ input{font:inherit}
   <div class="sec"><h3>📖 반주가 준비된 찬송</h3><div id="readyList"></div></div>
   <div class="homebtns">
     <button id="btnFolder">📁 악보 폴더 연결</button>
+    <button id="btnInstall" class="hidden">📲 홈 화면에 앱으로 설치</button>
   </div>
   <div class="note">
     악보 사진은 이 휴대폰 안에만 저장되고 인터넷에는 올라가지 않습니다.<br>
@@ -110,6 +111,7 @@ input{font:inherit}
   <div class="top">
     <button id="back">‹ 목록</button>
     <div class="ttl" id="songTitle"></div>
+    <button id="fs" title="전체 화면">⛶</button>
     <button id="star">☆</button>
   </div>
   <div id="sheetScroll">
@@ -176,7 +178,7 @@ input{font:inherit}
 
 <script>
 "use strict";
-const BUILD = "2026-10-29-2";
+const BUILD = "2026-10-29-3";
 document.getElementById('build').textContent = 'build ' + BUILD;
 
 /* =====================================================================
@@ -645,7 +647,7 @@ async function openSong(n){
   st=Object.assign({}, DEF, LS.get('lastGlobal',{}), saved||{});
   $('home').classList.add('hidden'); $('song').classList.remove('hidden');
   $('songTitle').innerHTML='<b>'+n+'</b>'+(songTitle(n)||'');
-  $('star').textContent = LS.get('fav',[]).includes(n)?'★':'☆';
+  $('star').textContent = LS.get('fav',[]).includes(n)?'★':'☆'; fsBtn();
   history.pushState({song:n},'');
   updateLabels(); renderOpts();
   await showSheet();
@@ -654,7 +656,7 @@ async function openSong(n){
   if(!SONGS[n].data) $('where').textContent='반주 자료 준비 전 (악보만 볼 수 있음)';
   else $('where').textContent='준비';
 }
-function closeSong(){ stopPlay(); $('song').classList.add('hidden'); $('home').classList.remove('hidden'); renderHome(); }
+function closeSong(){ stopPlay(); exitFS(); $('song').classList.add('hidden'); $('home').classList.remove('hidden'); renderHome(); }
 $('back').onclick=()=>history.back();
 window.addEventListener('popstate',()=>{ if(!$('opts').classList.contains('hidden')){ closeOpts(); history.pushState({song:cur},''); return; } if(!$('song').classList.contains('hidden')) closeSong(); });
 
@@ -732,7 +734,24 @@ $('slower').onclick=()=>setTempo(st.tempo-0.05);
 $('faster').onclick=()=>setTempo(st.tempo+0.05);
 $('tempoLbl').onclick=()=>{ setTempo(1); toast('원래 속도로'); };
 
+/* ---------- 전체 화면 (주소창 없애기) ---------- */
+const isStandalone = () => (window.matchMedia && matchMedia('(display-mode: standalone)').matches && !fsEl()) || navigator.standalone===true;
+const fsEl = () => document.fullscreenElement || document.webkitFullscreenElement;
+function enterFS(){ if(isStandalone() || fsEl()) return; const el=document.documentElement, f=el.requestFullscreen||el.webkitRequestFullscreen; if(!f) return;
+  try{ const r=f.call(el,{navigationUI:'hide'}); if(r&&r.catch) r.catch(()=>{}); }catch(e){} }
+function exitFS(){ if(!fsEl()) return; const f=document.exitFullscreen||document.webkitExitFullscreen; try{ const r=f.call(document); if(r&&r.catch) r.catch(()=>{}); }catch(e){} }
+const canFS = () => !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+function fsBtn(){ const b=$('fs'); if(!b) return; b.classList.toggle('hidden', isStandalone() || !canFS()); b.textContent = fsEl() ? '⤢' : '⛶'; }
+$('fs').onclick=()=>{ if(fsEl()) exitFS(); else enterFS(); };
+document.addEventListener('fullscreenchange',()=>{ fsBtn(); setTimeout(()=>{ if(cur) layoutSheet(); },120); });
+document.addEventListener('webkitfullscreenchange',()=>{ fsBtn(); setTimeout(()=>{ if(cur) layoutSheet(); },120); });
+let installEvt=null;
+window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); installEvt=e; $('btnInstall').classList.remove('hidden'); });
+$('btnInstall').onclick=async()=>{ if(!installEvt) return; installEvt.prompt(); try{ await installEvt.userChoice; }catch(e){} installEvt=null; $('btnInstall').classList.add('hidden'); };
+window.addEventListener('appinstalled',()=>{ $('btnInstall').classList.add('hidden'); toast('홈 화면에 설치했습니다. 이제 홈 화면의 찬송가 아이콘으로 여세요',4000); });
+
 $('play').onclick=()=>{
+  if(!player.playing && st.compact==='1') enterFS(); // 재생 시작 = 손가락으로 누른 순간이라 전체 화면 가능
   ensureAudio();
   if(player.playing && !player.paused) pausePlay();
   else if(player.paused) resumePlay();
