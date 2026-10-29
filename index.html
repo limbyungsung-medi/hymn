@@ -65,6 +65,14 @@ input{font:inherit}
 .prow{display:grid;grid-template-columns:1fr 1.6fr 1fr 1fr;gap:8px}
 .prow button{min-height:58px;font-size:18px}
 #play{background:var(--accent-bg);border-color:var(--accent);font-size:21px;font-weight:700}
+#mini{display:flex;align-items:center;gap:10px}
+#mini button{min-height:54px;padding:0 16px;font-size:18px}
+#mPlay{background:var(--accent-bg);border-color:var(--accent);min-width:76px;font-size:24px!important}
+.minfo{flex:1;display:flex;flex-direction:column;line-height:1.3;min-width:0}
+.minfo b{font-size:19px;color:#fff}
+.minfo span{font-size:13px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#sheetBox{transition:width .25s,height .25s}
+#sheetBox img{transition:width .25s,top .25s}
 /* ---------- 설정 시트 ---------- */
 #opts{position:fixed;left:0;right:0;bottom:0;max-height:80%;overflow-y:auto;background:#181818;border-top:1px solid #333;border-radius:18px 18px 0 0;padding:14px 16px calc(18px + env(safe-area-inset-bottom));z-index:20;box-shadow:0 -8px 30px rgba(0,0,0,.6)}
 #opts h4{margin:14px 0 8px;font-size:15px;color:var(--dim);font-weight:600}
@@ -112,6 +120,12 @@ input{font:inherit}
     </div>
   </div>
   <div id="ctrl">
+    <div id="mini" class="hidden">
+      <button id="mPlay">⏸</button>
+      <div class="minfo"><b id="mWhere">준비</b><span id="mSet"></span></div>
+      <button id="mOpen">▲ 조절</button>
+    </div>
+    <div id="full">
     <div id="status"><span id="where">준비</span><span id="keyInfo"></span></div>
     <div class="crow">
       <button id="down">− 낮게</button>
@@ -128,6 +142,7 @@ input{font:inherit}
       <button id="play">▶ 재생</button>
       <button id="firstNote" title="첫 음 듣기">♪ 첫음</button>
       <button id="more" title="설정">⚙</button>
+    </div>
     </div>
   </div>
 </div>
@@ -149,6 +164,8 @@ input{font:inherit}
   <h4>악보 화면</h4>
   <div class="seg" data-k="dark"><button data-v="1">어둡게</button><button data-v="0">원래 흰 종이</button></div>
   <div class="seg" style="margin-top:6px" data-k="follow"><button data-v="1">지금 부르는 곳 표시</button><button data-v="0">표시 안 함</button></div>
+  <h4>재생하는 동안</h4>
+  <div class="seg" data-k="compact"><button data-v="1">버튼 접고 악보 전체 보기</button><button data-v="0">버튼 그대로</button></div>
   <h4>악보 사진</h4>
   <div class="seg"><button id="repick">🖼 이 장 악보 사진 바꾸기</button></div>
   <button id="optsClose">닫기</button>
@@ -159,7 +176,7 @@ input{font:inherit}
 
 <script>
 "use strict";
-const BUILD = "2026-10-29-1";
+const BUILD = "2026-10-29-2";
 document.getElementById('build').textContent = 'build ' + BUILD;
 
 /* =====================================================================
@@ -295,7 +312,7 @@ const LS = {
   get(k,d){ try{ const v=localStorage.getItem('hymn.'+k); return v==null?d:JSON.parse(v);}catch(e){return d;} },
   set(k,v){ try{ localStorage.setItem('hymn.'+k, JSON.stringify(v)); }catch(e){} }
 };
-const DEF = { shift:0, tempo:1, inst:'piano', mel:'1', acc:'1', verses:null, intro:'intro', repeat:'0', dark:'1', follow:'1' };
+const DEF = { shift:0, tempo:1, inst:'piano', mel:'1', acc:'1', verses:null, intro:'intro', repeat:'0', dark:'1', follow:'1', compact:'1' };
 
 let db=null;
 function openDB(){ return new Promise(res=>{ try{ const r=indexedDB.open('hymn-db',1);
@@ -505,22 +522,35 @@ async function startPlay(fromIndex){
   silenceAll();
   player.playing=true; player.paused=false; player.i=fromIndex||0; player.next=ctx.currentTime+0.12; player.log=[];
   clearInterval(player.timer); player.timer=setInterval(tick,25); schedule();
-  setPlayBtn(); keepAwake(true); loopUI(); addRecent(cur);
+  setPlayBtn(); keepAwake(true); loopUI(); addRecent(cur); setCompact(true);
 }
 function pausePlay(){ if(!player.playing) return; player.paused=true; ctx.suspend(); setPlayBtn(); keepAwake(false); }
 function resumePlay(){ player.paused=false; ctx.resume().then(()=>{ setPlayBtn(); keepAwake(true); }); }
 function stopPlay(){
   player.playing=false; player.paused=false; clearInterval(player.timer);
   if(ctx){ silenceAll(); if(ctx.state==='suspended') ctx.resume(); }
-  setPlayBtn(); keepAwake(false); showPos(null);
+  setPlayBtn(); keepAwake(false); showPos(null); setCompact(false);
 }
-function finish(){ clearInterval(player.timer); player.paused=false; setPlayBtn(); keepAwake(false); showPos(null); document.getElementById('where').textContent='다 불렀습니다 🙏'; }
+function finish(){ clearInterval(player.timer); player.paused=false; setPlayBtn(); keepAwake(false); showPos(null); setCompact(false); document.getElementById('where').textContent='다 불렀습니다 🙏'; }
 function seekTo(idx){
   if(!player.playing){ startPlay(idx); return; }
   if(player.paused){ player.paused=false; ctx.resume(); }
   silenceAll(); player.i=idx; player.next=ctx.currentTime+0.08; player.log=[]; schedule(); setPlayBtn(); keepAwake(true);
 }
+/* ---------- 재생 중에는 버튼을 접고 악보 전체 보기 ---------- */
+let compactOn=false, compactT=null;
+function setCompact(on){
+  clearTimeout(compactT);
+  if(on && st && st.compact!=='1') on=false;
+  if(on===compactOn) return;
+  compactOn=on;
+  $('mini').classList.toggle('hidden', !on); $('full').classList.toggle('hidden', on);
+  requestAnimationFrame(()=>{ layoutSheet(); $('sheetScroll').scrollTop=0; });
+  if(on && !LS.get('compactHint',false)){ LS.set('compactHint',true); toast('악보 전체가 보이도록 버튼을 접었습니다. ▲ 조절을 누르면 다시 나옵니다', 4200); }
+}
+function compactLater(){ clearTimeout(compactT); if(player.playing && !player.paused && st.compact==='1') compactT=setTimeout(()=>{ if(player.playing && !player.paused && $('opts').classList.contains('hidden')) setCompact(true); else compactLater(); }, 5000); }
 function setPlayBtn(txt){
+  const mp=document.getElementById('mPlay'); if(mp) mp.textContent = (player.playing && !player.paused) ? '⏸' : '▶';
   const b=document.getElementById('play');
   if(txt){ b.textContent=txt; return; }
   b.textContent = (player.playing && !player.paused) ? '⏸ 멈춤' : (player.paused ? '▶ 계속' : '▶ 재생');
@@ -552,7 +582,7 @@ function showPos(ev){
   const where=document.getElementById('where'), hl=document.getElementById('hl'), hlL=document.getElementById('hlLyric');
   if(!ev){ hl.classList.add('hidden'); hlL.classList.add('hidden'); lastSeg=null; lastVerse=-1; if(!player.playing) where.textContent='준비'; return; }
   const label = ev.intro ? (ev.click?'박자':'전주') : (ev.seg&&ev.seg.part==='a' ? '아멘' : ev.verse+'절' + (ev.seg&&ev.seg.part==='r'?' · 후렴':''));
-  where.innerHTML='<b>'+label+'</b>';
+  where.innerHTML='<b>'+label+'</b>'; $('mWhere').textContent=label;
   if(ev.seg===lastSeg && ev.verse===lastVerse) return;
   const changedSys = !lastSeg || !ev.seg || lastSeg.sys!==(ev.seg&&ev.seg.sys);
   lastSeg=ev.seg; lastVerse=ev.verse;
@@ -643,15 +673,18 @@ async function showSheet(){
   layoutSheet();
 }
 function layoutSheet(){
-  const img=$('sheetImg'), box=$('sheetBox'); if(!img.naturalWidth) return;
-  const D=SONGS[cur].data, w=box.clientWidth||Math.min(720,innerWidth);
-  let top=0, bottom=img.naturalHeight, s=w/img.naturalWidth, match=false;
+  const img=$('sheetImg'), box=$('sheetBox'), sc=$('sheetScroll'); if(!img.naturalWidth) return;
+  const D=SONGS[cur].data;
+  let W=img.naturalWidth, top=0, bottom=img.naturalHeight, match=false;
   if(D && D.img){ const r1=img.naturalWidth/img.naturalHeight, r2=D.img.w/D.img.h;
-    if(Math.abs(r1/r2-1)<0.03){ match=true; s=w/D.img.w; top=D.img.cropTop; bottom=D.img.cropBottom; } }
-  img.style.width = (match ? D.img.w*s : w)+'px';
-  img.style.top = (-top*s)+'px';
-  box.style.height = ((bottom-top)*(match?s:w/img.naturalWidth))+'px';
+    if(Math.abs(r1/r2-1)<0.03){ match=true; W=D.img.w; top=D.img.cropTop; bottom=D.img.cropBottom; } }
+  const fullW=Math.min(720, sc.clientWidth||innerWidth);
+  let s=fullW/W;
+  if(compactOn) s=Math.min(s, (sc.clientHeight-6)/(bottom-top)); // 화면 안에 악보 전체
+  box.style.width=(W*s)+'px'; box.style.height=((bottom-top)*s)+'px';
+  img.style.width=(W*s)+'px'; img.style.top=(-top*s)+'px';
   sheetGeom = match ? {s, top} : null;
+  lastSeg=null;
   if(!match) { $('hl').classList.add('hidden'); $('hlLyric').classList.add('hidden'); }
 }
 addEventListener('resize',()=>{ if(cur) { layoutSheet(); lastSeg=null; } });
@@ -686,6 +719,7 @@ function updateLabels(){
   $('pitchLbl').innerHTML = shiftWords(s) + (tonic?`<small>${keyAfter(s)}장조 (원래 ${tonic})</small>`:'<small>높이</small>');
   $('tempoLbl').innerHTML = Math.round(st.tempo*100)+'%<small>'+(st.tempo===1?'원래 속도':'속도')+'</small>';
   $('keyInfo').textContent = '';
+  $('mSet').textContent = shiftWords(s) + ' · 속도 ' + Math.round(st.tempo*100) + '%' + (st.inst==='organ'?' · 오르간':'');
 }
 function save(){ LS.set('song.'+cur, st); LS.set('lastGlobal',{inst:st.inst, mel:st.mel, acc:st.acc, intro:st.intro, dark:st.dark, follow:st.follow}); }
 function setShift(v){ v=Math.max(-12,Math.min(12,v)); if(v===st.shift) return; st.shift=v; updateLabels(); save();
@@ -704,6 +738,9 @@ $('play').onclick=()=>{
   else if(player.paused) resumePlay();
   else startPlay(0);
 };
+$('mPlay').onclick=()=>$('play').onclick();
+$('mOpen').onclick=()=>{ setCompact(false); compactLater(); };
+$('full').addEventListener('click',()=>{ if(player.playing) compactLater(); });
 $('restart').onclick=()=>{ const was=player.playing&&!player.paused; stopPlay(); if(was) startPlay(0); };
 $('firstNote').onclick=async()=>{
   const s=SONGS[cur]; if(!s.data){ toast('반주 자료가 없습니다'); return; }
@@ -736,7 +773,7 @@ $('verseSeg').addEventListener('click',e=>{
   st.verses=vs.sort((a,b)=>a-b); save(); renderOpts(); if(player.playing) toast('다음에 재생할 때부터 적용됩니다');
 });
 function openOpts(){ $('opts').classList.remove('hidden'); $('scrim').classList.remove('hidden'); }
-function closeOpts(){ $('opts').classList.add('hidden'); $('scrim').classList.add('hidden'); }
+function closeOpts(){ $('opts').classList.add('hidden'); $('scrim').classList.add('hidden'); if(player.playing) compactLater(); }
 $('more').onclick=openOpts; $('optsClose').onclick=closeOpts; $('scrim').onclick=closeOpts;
 
 /* ---------- 악보 사진 연결 ---------- */
