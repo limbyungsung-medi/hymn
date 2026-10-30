@@ -178,7 +178,7 @@ input{font:inherit}
 
 <script>
 "use strict";
-const BUILD = "2026-10-30-1";
+const BUILD = "2026-10-30-2";
 document.getElementById('build').textContent = 'build ' + BUILD;
 
 /* =====================================================================
@@ -300,6 +300,188 @@ SONGS[438].data = (function(){
     verse, intro
   };
 })();
+
+/* ---- 2026-10-30 추가: 305·288·370·304·88장 ---- */
+function buildSong(o){
+  const segs=[], byKey=(k)=>{ if(!(k in o.E)) throw new Error('no '+k); return o.E[k]; };
+  o.lines.forEach(L=>L.m.forEach(([k,x0,x1,part])=>segs.push({ev:byKey(k), sys:L.sys, x0, x1, part:part||'v'})));
+  const pick=(a,b)=>segs.slice(a,b);
+  const intro=[]; (o.intro||[]).forEach(([a,b])=>intro.push(...pick(a,b)));
+  const amen=(o.amen||[]).map(([k,sys,x0,x1])=>({ev:byKey(k),sys,x0,x1,part:'a'}));
+  return { img:o.img, systems:o.systems, lyricRows:o.lyricRows, lyricH:o.lyricH, verse:segs, intro, amen: amen.length?amen:undefined };
+}
+Object.assign(SONGS, {
+  305: { title:"나 같은 죄인 살리신", tonic:"G", meter:"3/4", bpm:78, beatUnits:4, countBeats:3, verses:4 },
+  288: { title:"예수를 나의 구주 삼고", tonic:"D", meter:"9/8", bpm:50, beatUnits:6, countBeats:3, verses:3 },
+  370: { title:"주 안에 있는 나에게", tonic:"G", meter:"6/8", bpm:58, beatUnits:6, countBeats:2, verses:4 },
+  304: { title:"그 크신 하나님의 사랑", tonic:"D", meter:"3/4", bpm:80, beatUnits:4, countBeats:3, verses:3 },
+  88:  { title:"내 진정 사모하는", tonic:"F", meter:"4/4", bpm:96, beatUnits:4, countBeats:4, verses:3 },
+  94:  { title:"주 예수보다 더 귀한 것은 없네" }
+});
+
+// 305장 — AMAZING GRACE, 미국 민요, Arr. E. O. Excell, 1900
+SONGS[305].data = buildSong({
+  E:{
+    P:"4 D4 B3 G3 G2", P2:"4 B4 D4 G3 G2",
+    M1:"8 G4 B3 D3 G2|2 B4 D4:4 G3:4 G2|2 G4 - - B2",
+    M2:"8 B4 D4 G3 D3|4 A4 C4 F#3 D3",
+    M3:"8 G4 B3 G3 E3|4 E4 C4 G3 C3",
+    M4:"8 D4 B3 G3 G2|4 D4 B3 G3 G2",
+    M6:"8 B4 D4 G3 D3|4 A4 D4 F#3 C3",
+    M7:"12 D5:20 D4:20 G3:20 B2:20", HOLD8:"8 - - - -",
+    M9:"6 D5 D4:8 B3:6 G3:6|2 B4 - - -|2 D5 D4:4 B3:4 G3:4|2 B4 - - -",
+    M10:"8 G4 D4 G3 B2|4 D4 B3 G3 B2",
+    M11:"6 E4 C4:6 G3:8 C3:6|2 G4 D4 - B2|2 G4 C4:4 E3 C3|2 E4 - G3 -",
+    M12:"8 D4 B3 G3 G2|4 D4 B3 G3 B2",
+    M13:"8 G4 B3 G3 E3|2 B4 D4:4 G3:4 D3|2 G4 - - B2",
+    M14:"8 B4 D4 F#3 D3|4 A4 C4 F#3 D3",
+    M15:"12 G4:20 B3:20 G3:20 G2:20",
+    A1:"12 G4 C4 E3 C3", A2:"12 G4 B3 D3 G2"
+  },
+  lines:[
+    {sys:1, m:[['P',186,248],['M1',248,362],['M2',362,464],['M3',464,567],['M4',567,677],['M1',677,807],['M6',807,910],['M7',910,972],['HOLD8',972,1021]]},
+    {sys:2, m:[['P2',150,212],['M9',212,336],['M10',336,419],['M11',419,548],['M12',548,629],['M13',629,726],['M14',726,802],['M15',802,855],['HOLD8',855,906]]}
+  ],
+  intro:[[0,4],[14,18]],
+  amen:[['A1',2,906,962],['A2',2,962,1018]],
+  img:{w:1080,h:2340,cropTop:800,cropBottom:1710},
+  systems:{1:[930,1300],2:[1310,1690]},
+  lyricRows:{1:[1075,1113,1150,1186],2:[1452,1490,1527,1563]}, lyricH:16
+});
+
+// 288장 — ASSURANCE, P. P. Knapp, 1873
+SONGS[288].data = buildSong({
+  E:{
+    P:"2 F#4 D4 A3 D3|2 E4 D4 G3 D3|2 D4 D4 F#3 D3",
+    M1:"6 A4 F#4 A3 D3|6 A4 F#4 A3 D3|2 G4 D4 B3 D3|2 A4 D4 F#3 D3|2 B4 D4 G3 D3",
+    M2:"12 A4 F#4 F#3 D3|2 A4 F#4 A3 D3|2 F#4 D4 A3 D3|2 A4 F#4 A3 D3",
+    M3:"6 D5 F#4 A3 D3|4 C#5 E4 A3 E3|2 C#5 E4 A3 E3|2 B4 E4 D4 E3|2 A4 E4 C#4 E3|2 G#4 E4 B3 E3",
+    M4:"12 A4 E4 C#4 A2",
+    M6:"12 A4 D4 F#3 D3|2 D4 D4 F#3 D3|2 E4 D4 G3 D3|2 F#4 D4 A3 D3",
+    M7:"6 G4 D4 B3 G2|6 E4 B3 G3 G2|3 D4 B3 F#3 A2|1 E4 C#4 G3 A2|2 C#4 A3 E3 A2",
+    M8:"12 D4 A3 F#3 D3",
+    P3:"2 A4 F#4 D4 D3|2 A4 F#4 D4 D3|2 A4 F#4 D4 D3",
+    M9:"6 D5 F#4 A3 D3|6 A4 F#4 D4 D3|2 B4 G4 D4 G3|2 B4 G4 D4 G3|2 B4 G4 D4 G3",
+    M10:"12 A4 F#4 D4 D3|2 A4 F#4 D4 D3|2 A4 F#4 D4 D3|2 A4 F#4 D4 D3",
+    M11:"6 B4 G4 D4 G3|6 D5 A4 D4 F#3|2 C#5 A4 E4 E3|2 C#5 A4 E4 E3|2 B4 G#4 E4 E3",
+    M12:"12 C#5 A4 C#4 A2",
+    P4:"2 C#5 G4 A3 A2|2 D5 G4 B3 A2|2 E5 G4 C#4 A2",
+    M13:"6 D5 F#4 D4 D3|6 A4 F#4 D4 D3|2 B4 G4 D4 D3|2 A4 F#4 D4 D3|2 B4 G4 D4 D3",
+    M14:"12 A4 F#4 D4 D3|2 D4 B3 A3 F#3|2 E4 C#4 A3 E3|2 F#4 D4 A3 D3",
+    M16:"12 D4 A3 F#3 D3",
+    A1:"12 D4 B3 G3 G2", A2:"12 D4 A3 F#3 D3"
+  },
+  lines:[
+    {sys:1, m:[['P',198,322],['M1',322,526],['M2',526,703],['M3',703,938],['M4',938,1021]]},
+    {sys:2, m:[['P',160,297],['M1',297,513],['M6',513,707],['M7',707,930],['M8',930,1021]]},
+    {sys:3, m:[['P3',160,291,'r'],['M9',291,512,'r'],['M10',512,704,'r'],['M11',704,925,'r'],['M12',925,1021,'r']]},
+    {sys:4, m:[['P4',160,287,'r'],['M13',287,478,'r'],['M14',478,645,'r'],['M7',645,844,'r'],['M16',844,912,'r']]}
+  ],
+  intro:[[15,20]],
+  amen:[['A1',4,918,962],['A2',4,962,1009]],
+  img:{w:1080,h:2340,cropTop:520,cropBottom:1990},
+  systems:{1:[640,1000],2:[1000,1365],3:[1370,1660],4:[1660,1965]},
+  lyricRows:{1:[789,830,870],2:[1153,1193,1233],3:[1514],4:[1816]}, lyricH:18
+});
+
+// 370장 — W. J. Kirkpatrick(1838-1921)
+SONGS[370].data = buildSong({
+  E:{
+    P:"2 D4 B3 D3 B2",
+    M1:"4 G4 B3 D3 G2|2 G4 B3 D3 G2|2 G4 B3 D3 G2|2 A4 C4 D3 G2|2 B4 D4 G3 G2",
+    M2:"4 D4 B3 G3 G2|2 E4 C4 G3 G2|4 D4 B3 G3 G2|2 D4 B3 G3 G2",
+    M3:"4 G4 D4 G3 B2|2 G4 D4 G3 B2|2 B4 D4 G3 G2|2 A4 C4 G3 G2|2 G4 B3 G3 G2",
+    M4:"10 A4 D4 F#3 D3",
+    M7:"4 E4 C4 G3 C3|2 C5 E4 G3 C3|4 B4 D4 G3 D3|2 A4 C4 F#3 D3",
+    M8:"12 G4 B3 G3 G2",
+    M9:"2 B4 G4 D4 G3|2 D5 G4 B3 G3|2 D5 G4 B3 G3|4 D5 G4 B3 G3|2 D5 G4 B3 G3",
+    M10:"4 B4 G4 D4 G3|2 D5 G4 B3 G3|6 G4 D4 B3 G3",
+    M11:"2 B4 G4 D4 G3|2 A4 E4 C4 G3|2 G4 E4 B3 G3|6 D5 F#4 A3 D3",
+    M12:"2 G4 D4 B3 G3|2 A4 F#4 D4 F#3|2 B4 G4 D4 G3|6 A4 F#4 D4 D3",
+    M14:"4 B4 G4 D4 G3|2 D5 G4 B3 G3|4 G4 D4 B3 G3|2 D4 B3 G3 B2",
+    M15:"2 E4 C4 G3 C3|2 E4 C4 G3 C3|2 C5 G4 E4 C3|2 B4 G4 D4 D3|2 B4 G4 D4 D3|2 A4 F#4 C4 D3",
+    M16:"12 G4 D4 B3 G2"
+  },
+  lines:[
+    {sys:1, m:[['P',130,177],['M1',177,372],['M2',372,590],['M3',590,806],['M4',806,944]]},
+    {sys:2, m:[['P',115,146],['M1',146,383],['M2',383,599],['M7',599,815],['M8',815,944]]},
+    {sys:3, m:[['M9',130,327,'r'],['M10',327,518,'r'],['M11',518,731,'r'],['M12',731,944,'r']]},
+    {sys:4, m:[['M9',130,324,'r'],['M14',324,538,'r'],['M15',538,794,'r'],['M16',794,941,'r']]}
+  ],
+  intro:[[14,18]],
+  img:{w:1080,h:2340,cropTop:520,cropBottom:1990},
+  systems:{1:[630,1050],2:[1050,1420],3:[1420,1700],4:[1690,1960]},
+  lyricRows:{1:[793,833,873,914],2:[1180,1219,1260,1300],3:[1561],4:[1820]}, lyricH:18
+});
+
+// 304장 — F. M. Lehman, 1917
+SONGS[304].data = buildSong({
+  E:{
+    P1:"2 D4 A3 F#3 D3|3 D4 A3 F#3 D3|1 E4 A3 G3 E3",
+    M1:"6 F#4 D4 A3 D3|2 A4 F#4 D4 D3|3 B4 G4 D4 D3|1 A4 F#4 D4 D3",
+    M2:"4 A4 F#4 D4 D3|2 F#4 D4 A3 D3|2 A4 D4 F#3 D3|3 A4 D4 F#3 D3|1 F#4 D4 A3 D3",
+    M3a:"6 E4 C#4 A3 A2|2 G4 E4 A3 A2|3 F#4 D4 A3 A2|1 E4 C#4 A3 A2",
+    M4a:"6 F#4 D4 A3 D3",
+    M3b:"6 E4 C#4 G3 A2|2 G4 E4 A3 A2|3 F#4 D4 A3 A2|1 E4 C#4 G3 A2",
+    M4b:"6 D4 D4 F#3 D3",
+    P3:"2 D5 D4 F#3 D3|3 D5 D4 G3 E3|1 D5 D4 A3 F#3",
+    M9:"6 B4 D4 B3 G3|2 D5 D4 B3 G3|3 D5 D4 B3 B2|1 D5 D4 G3 B2",
+    M10:"4 A4 D4:6 F#3 D3:6|2 F#4 - A3 -|2 A4 D4 F#3 D3|3 A4 D4 F#3 D3|1 B4 D4 F#3 D3",
+    M11:"4 A4 C#4:8 E3:8 A2:8|4 E4 - - -|4 G4 E4 G3 C#3",
+    M12:"6 F#4 D4 A3 D3",
+    M15:"4 A4 C#4:8 E3 A2:8|4 E4 - G3 -|4 F#4 C#4 A3 A2",
+    M16:"6 D4 D4 F#3 D3",
+    M17:"6 D5 D4 B3 G3|2 D5 D4 B3 G3|3 C#5 E4 A3 G3|1 B4 D4 G3 E3",
+    M18:"4 A4 D4:6 F#3 D3:6|2 F#4 - A3 -|2 A4 D4 F#3 D3|3 A4 D4 F#3 D3|1 B4 D4 G3 D3",
+    M19:"4 A4 C#4:8 A3:8 E3:8|4 E4 - - -|4 B4 C#4 G3 A2",
+    M20:"6 A4 D4 F#3 D3",
+    M22:"4 A4 D4 F#3 D3|2 F#4 D4 A3 D3|2 A4 D4 F#3 D3|3 A4 D4 F#3 D3|1 B4 D4 F#3 D3",
+    M23:"4 A4 C#4 E3 A2|4 E4 C#4 G3 A2|4 F#4 C#4 A3 A2"
+  },
+  lines:[
+    {sys:1, m:[['P1',260,374],['M1',374,546],['M2',546,740],['M3a',740,914],['M4a',914,984]]},
+    {sys:2, m:[['P1',230,352],['M1',352,533],['M2',533,732],['M3b',732,910],['M4b',910,984]]},
+    {sys:3, m:[['P3',230,355],['M9',355,540],['M10',540,748],['M11',748,908],['M12',908,984]]},
+    {sys:4, m:[['P3',230,355],['M9',355,540],['M10',540,747],['M15',747,908],['M16',908,984]]},
+    {sys:5, m:[['P3',235,358,'r'],['M17',358,545,'r'],['M18',545,753,'r'],['M19',753,913,'r'],['M20',913,989,'r']]},
+    {sys:6, m:[['P3',235,358,'r'],['M17',358,545,'r'],['M22',545,751,'r'],['M23',751,911,'r'],['M16',911,986,'r']]}
+  ],
+  intro:[[25,30]],
+  img:{w:1080,h:2340,cropTop:330,cropBottom:2170},
+  systems:{1:[455,790],2:[750,1085],3:[1045,1380],4:[1340,1675],5:[1660,1925],6:[1885,2150]},
+  lyricRows:{1:[592,627,663],2:[889,924,959],3:[1181,1216,1251],4:[1477,1513,1548],5:[1797],6:[2021]}, lyricH:16
+});
+
+// 88장 — 미국 민요, Arr. W. S. Hays(1837-1907)
+SONGS[88].data = buildSong({
+  E:{
+    P1:"2 A4 F4:4 C4 F3:4|2 Bb4 - Bb3 -",
+    M1:"2 C5 F4 A3 F3|2 C5 F4 A3 F3|2 D5 F4 Bb3 F3|2 C5 F4 A3 F3|2 C5 F4 A3 F3|4 A4 F4 C4 F3|2 F4 C4 A3 F3",
+    M2:"2 G4 D4 Bb3 Bb2|2 F4 D4 Bb3 Bb2|2 F4 D4 Bb3 Bb2|2 D4 Bb3 Bb3 Bb2|4 C4 C4 A3 F3|2 F4 C4 A3 F3|2 G4 C4 Bb3 E3",
+    M3:"2 A4 F4 C4 F3|2 A4 F4 C4 F3|2 A4 F4 C4 F3|2 A4 F4 C4 F3|2 D5 F4 Bb3 G3|2 C5 F4 C4 A3|2 C5 E4 C4 G3|2 A4 F4 C4 F3",
+    M4:"12 G4 E4 C4 C3",
+    M7:"2 A4 F4 C4 F3|2 C5 A4 C4 F3|2 A4 F4 C4 F3|2 F4 D4 A3 F3|2 G4 E4 Bb3 C3|2 Bb4 E4 C4 C3|2 A4 F4 C4 C3|2 G4 E4 Bb3 C3",
+    M8:"12 F4 C4 A3 F3|2 - - - -",
+    P3:"2 F4 C4 A3 F3",
+    M9:"2 Bb4 D4 F3 Bb2|2 Bb4 D4 F3 Bb2|2 Bb4 D4 F3 Bb2|2 Bb4 D4 F3 Bb2|2 Bb4 D4 F3 Bb2|4 D5 F4 Bb3 Bb2|2 D5 F4 Bb3 Bb2",
+    M10:"2 D5 F4 Bb3 F3|2 C5 F4 A3 F3|2 C5 F4 A3 F3|2 A4 F4 C4 F3|4 C5 F4 A3 F3|2 A4 F4:4 C4 F3:4|2 G4 - Bb3 -",
+    M11:"2 F4 C4 A3 F3|2 F4 C4 A3 F3|2 F4 C4 A3 F3|2 F4 D4 A3 F3|2 D5 F4 Bb3 G3|2 C5 F4 C4 A3|2 C5 E4 C4 G3|2 A4 F4 C4 F3",
+    P4:"2 A4 F4 C4 F3|2 Bb4 F4 Bb3 F3",
+    M16:"12 F4 C4 A3 F3",
+    A1:"8 Bb4 F4 D4 Bb2", A2:"8 A4 F4 C4 F3"
+  },
+  lines:[
+    {sys:1, m:[['P1',187,262],['M1',262,488],['M2',488,719],['M3',719,967],['M4',967,1027]]},
+    {sys:2, m:[['P1',150,237],['M1',237,464],['M2',464,697],['M7',697,943],['M8',943,1027]]},
+    {sys:3, m:[['P3',150,232],['M9',232,465],['M10',465,694],['M11',694,947],['M4',947,1027]]},
+    {sys:4, m:[['P4',150,242,'r'],['M1',242,455,'r'],['M2',455,679,'r'],['M7',679,912,'r'],['M16',912,950,'r']]}
+  ],
+  intro:[[0,10]],
+  amen:[['A1',4,957,986],['A2',4,986,1016]],
+  img:{w:1080,h:2340,cropTop:540,cropBottom:1990},
+  systems:{1:[650,1005],2:[990,1343],3:[1325,1680],4:[1665,1965]},
+  lyricRows:{1:[795,830,864],2:[1138,1173,1207],3:[1474,1508,1542],4:[1823]}, lyricH:15
+});
 
 /* ---------------- 음 이름 ---------------- */
 const PC = {C:0,'C#':1,Db:1,D:2,'D#':3,Eb:3,E:4,'E#':5,F:5,'F#':6,Gb:6,G:7,'G#':8,Ab:8,A:9,'A#':10,Bb:10,B:11};
