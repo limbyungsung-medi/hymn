@@ -82,6 +82,18 @@ input{font:inherit}
 .seg button.on{background:var(--accent-bg);border-color:var(--accent);color:#fff;font-weight:700}
 #optsClose{width:100%;margin-top:18px;padding:13px;font-size:17px}
 #scrim{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:19}
+.fcard{margin-top:22px;background:var(--panel);border:1px solid #2E3B3B;border-radius:16px;padding:14px}
+.ftitle{font-size:17px;font-weight:700;margin-bottom:6px}
+.finfo{font-size:14px;color:var(--dim);line-height:1.6}
+.finfo b{color:#fff}
+.fbtn{width:100%;margin-top:12px;padding:14px;font-size:18px;background:var(--accent-bg);border-color:var(--accent);font-weight:700}
+#scanBox{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:60;display:flex;align-items:center;justify-content:center;padding:16px}
+#scanBox .in{background:#1B1B1B;border:1px solid #333;border-radius:16px;padding:18px;max-width:440px;width:100%;max-height:80vh;overflow:auto;font-size:15px;line-height:1.6}
+#scanBox .in h3{margin:0 0 8px;font-size:18px}
+#scanBox .bar{height:8px;background:#333;border-radius:4px;margin:10px 0;overflow:hidden}
+#scanBox .bar i{display:block;height:100%;background:var(--accent);width:0}
+#scanBox .bad{font-size:13px;color:#C9A36A;white-space:pre-wrap}
+#scanBox button{width:100%;margin-top:12px;padding:12px;font-size:17px}
 #toast{position:fixed;left:50%;top:70px;transform:translateX(-50%);background:#2A2A2A;color:#fff;padding:11px 16px;border-radius:12px;font-size:15px;z-index:50;max-width:90%;text-align:center;border:1px solid #3A3A3A;opacity:0;transition:opacity .25s;pointer-events:none}
 #toast.show{opacity:1}
 </style>
@@ -96,13 +108,19 @@ input{font:inherit}
   <div class="sec" id="favSec"><h3>⭐ 즐겨찾기</h3><div id="favList"></div></div>
   <div class="sec" id="recSec"><h3>🕘 최근 부른 찬송</h3><div id="recList"></div></div>
   <div class="sec"><h3>📖 반주가 준비된 찬송</h3><div id="readyList"></div></div>
+  <div id="folderCard" class="fcard">
+    <div class="ftitle">📁 악보 폴더</div>
+    <div id="folderInfo" class="finfo">아직 연결된 악보가 없습니다.<br>찬송가 악보 사진이 모여 있는 폴더를 한 번만 골라 주시면, 파일 이름의 장 번호대로 모든 장에 자동으로 맞춰집니다.</div>
+    <button id="btnFolder" class="fbtn">📁 악보 폴더 고르기</button>
+  </div>
   <div class="homebtns">
-    <button id="btnFolder">📁 악보 폴더 연결</button>
     <button id="btnInstall" class="hidden">📲 홈 화면에 앱으로 설치</button>
   </div>
   <div class="note">
     악보 사진은 이 휴대폰 안에만 저장되고 인터넷에는 올라가지 않습니다.<br>
-    폴더 연결: 파일 이름에 장 번호가 들어 있으면(예: 438.jpg) 자동으로 맞춰집니다.
+    파일 이름 예: 438.jpg · 438장.jpg · 새찬송가 438장 내 영혼이 은총 입어.png · 0438.jpg<br>
+    두 쪽짜리 악보는 438-1.jpg, 438-2.jpg처럼 이름을 붙이면 위아래로 이어 붙여 한 장으로 보여 줍니다.<br>
+    새 악보를 폴더에 더 넣었으면 같은 폴더를 다시 고르면 됩니다(이미 있는 장은 새것으로 바뀝니다).
   </div>
 </div>
 
@@ -118,7 +136,8 @@ input{font:inherit}
     <div id="sheetBox"><img id="sheetImg" alt=""><div id="hlLyric" class="hidden"></div><div id="hl" class="hidden"></div></div>
     <div id="noSheet" class="nosheet hidden">
       이 장의 악보 사진이 아직 연결되지 않았습니다.<br>
-      <button id="pickSheet">🖼 악보 사진 고르기</button>
+      <button id="pickFolder2">📁 악보 폴더 고르기 (모든 장 한 번에)</button><br>
+      <button id="pickSheet">🖼 이 장 악보 사진만 고르기</button>
     </div>
   </div>
   <div id="ctrl">
@@ -175,10 +194,11 @@ input{font:inherit}
 <div id="toast"></div>
 <input type="file" id="fileOne" accept="image/*" class="hidden">
 <input type="file" id="fileDir" webkitdirectory multiple class="hidden">
+<div id="scanBox" class="hidden"><div class="in"><h3 id="scanTitle">악보를 읽는 중…</h3><div id="scanMsg"></div><div class="bar"><i id="scanBar"></i></div><div id="scanBad" class="bad"></div><button id="scanOk" class="hidden">확인</button></div></div>
 
 <script>
 "use strict";
-const BUILD = "2026-10-30-2";
+const BUILD = "2026-10-30-3";
 document.getElementById('build').textContent = 'build ' + BUILD;
 
 /* =====================================================================
@@ -502,7 +522,7 @@ let db=null;
 function openDB(){ return new Promise(res=>{ try{ const r=indexedDB.open('hymn-db',1);
   r.onupgradeneeded=()=>r.result.createObjectStore('sheets');
   r.onsuccess=()=>{db=r.result;res(db)}; r.onerror=()=>res(null);}catch(e){res(null)} }); }
-function idb(mode,fn){ return new Promise(res=>{ if(!db) return res(null); const tx=db.transaction('sheets',mode); const st=tx.objectStore('sheets'); const r=fn(st); tx.oncomplete=()=>res(r&&r.result); tx.onerror=()=>res(null); }); }
+function idb(mode,fn){ return new Promise(res=>{ if(!db) return res(null); const tx=db.transaction('sheets',mode); const st=tx.objectStore('sheets'); const r=fn(st); tx.oncomplete=()=>res(r&&r.result); tx.onerror=()=>res(null); tx.onabort=()=>res(null); }); }
 const sheetGet = n => idb('readonly', st=>st.get(n));
 const sheetPut = (n,blob) => idb('readwrite', st=>st.put(blob,n));
 const sheetKeys = () => idb('readonly', st=>st.getAllKeys());
@@ -839,7 +859,7 @@ function rowHTML(n){
   const tags = (ready?'<span class="tag ok">반주</span>':'') + (sheet?'<span class="tag">악보</span>':'');
   return `<div class="row" data-n="${n}"><span class="no">${n}</span><span class="tt">${songTitle(n)||'<span style="color:#777">제목 정보 없음</span>'}</span>${tags}</div>`;
 }
-function renderHome(){
+function renderHome(){ try{ renderFolderInfo(); }catch(e){}
   const fav=LS.get('fav',[]), rec=LS.get('recent',[]);
   $('favSec').classList.toggle('hidden', !fav.length); $('favList').innerHTML=fav.map(rowHTML).join('');
   $('recSec').classList.toggle('hidden', !rec.length); $('recList').innerHTML=rec.slice(0,8).map(rowHTML).join('');
@@ -1024,18 +1044,93 @@ $('more').onclick=openOpts; $('optsClose').onclick=closeOpts; $('scrim').onclick
 $('pickSheet').onclick=()=>$('fileOne').click();
 $('repick').onclick=()=>{ closeOpts(); $('fileOne').click(); };
 $('fileOne').onchange=async e=>{ const f=e.target.files[0]; e.target.value=''; if(!f) return; await sheetPut(cur,f); haveSheets.add(cur); await showSheet(); toast(cur+'장 악보를 연결했습니다'); };
+/* ---------- 악보 폴더: 파일 이름의 장 번호로 자동 연결 ---------- */
+// 파일 이름에서 장 번호 찾기: '438장' 우선, 그다음 1~645 사이의 첫 숫자 (날짜·연도 같은 큰 숫자는 건너뜀)
+function hymnNumberOf(name){
+  let b=name.replace(/\.[^.]+$/,'').replace(/[０-９]/g,c=>String.fromCharCode(c.charCodeAt(0)-0xFEE0));
+  let m=b.match(/(\d{1,4})\s*장/); if(m && +m[1]>=1 && +m[1]<=645) return {n:+m[1], rest:b.slice(m.index+m[0].length)};
+  const re=/\d+/g; let x;
+  while((x=re.exec(b))){ const v=+x[0]; if(x[0].length<=4 && v>=1 && v<=645) return {n:v, rest:b.slice(x.index+x[0].length)}; }
+  return null;
+}
+function pageOf(rest){ const m=rest.match(/^\s*[-_]\s*(\d)\b/) || rest.match(/^\s*\(\s*(\d)\s*쪽?\)/) || rest.match(/^\s*(\d)\s*쪽/); return m? +m[1] : 0; }
+function loadImg(blob){ return new Promise((res,rej)=>{ const u=URL.createObjectURL(blob), im=new Image(); im.onload=()=>{ URL.revokeObjectURL(u); res(im); }; im.onerror=()=>{ URL.revokeObjectURL(u); rej(); }; im.src=u; }); }
+// 너무 큰 사진은 휴대폰 저장 공간을 위해 폭 1440으로 줄이고, 여러 쪽이면 위아래로 이어 붙임
+async function prepareSheet(files){
+  const W=1440;
+  if(files.length===1){
+    const f=files[0];
+    if(f.size<900*1024) return f;
+    try{ const im=await loadImg(f); if(im.naturalWidth<=W) return f;
+      const s=W/im.naturalWidth, c=document.createElement('canvas'); c.width=W; c.height=Math.round(im.naturalHeight*s);
+      c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+      return await new Promise(r=>c.toBlob(b=>r(b||f),'image/jpeg',0.88));
+    }catch(e){ return f; }
+  }
+  const ims=[]; for(const f of files){ try{ ims.push(await loadImg(f)); }catch(e){} }
+  if(!ims.length) return files[0];
+  const w=Math.min(W, Math.max(...ims.map(i=>i.naturalWidth)));
+  const hs=ims.map(i=>Math.round(i.naturalHeight*w/i.naturalWidth));
+  const c=document.createElement('canvas'); c.width=w; c.height=hs.reduce((a,b)=>a+b,0);
+  const g=c.getContext('2d'); g.fillStyle='#fff'; g.fillRect(0,0,c.width,c.height);
+  let y=0; ims.forEach((im,i)=>{ g.drawImage(im,0,y,w,hs[i]); y+=hs[i]; });
+  return await new Promise(r=>c.toBlob(b=>r(b||files[0]),'image/jpeg',0.88));
+}
+function scanUI(show){ $('scanBox').classList.toggle('hidden',!show); }
+async function importFolder(fileList){
+  const files=[...fileList].filter(f=>!/(^|\/)\./.test(f.webkitRelativePath||f.name));
+  const imgs=files.filter(f=>/\.(jpe?g|png|webp|gif|bmp|heic|heif)$/i.test(f.name) || /^image\//.test(f.type));
+  const groups=new Map(), bad=[];
+  for(const f of imgs){
+    const h=hymnNumberOf(f.name); if(!h){ bad.push(f.name); continue; }
+    if(!groups.has(h.n)) groups.set(h.n,[]);
+    groups.get(h.n).push({f, page:pageOf(h.rest), name:f.name});
+  }
+  const others=files.length-imgs.length;
+  scanUI(true); $('scanTitle').textContent='악보를 읽는 중…'; $('scanOk').classList.add('hidden'); $('scanBad').textContent='';
+  try{ if(navigator.storage && navigator.storage.persist) await navigator.storage.persist(); }catch(e){}
+  const nums=[...groups.keys()].sort((a,b)=>a-b); let done=0, fail=0, dup=0;
+  for(const n of nums){
+    let g=groups.get(n);
+    const paged=g.filter(x=>x.page>0).sort((a,b)=>a.page-b.page);
+    let use;
+    if(paged.length>=2) use=paged.map(x=>x.f);
+    else { g.sort((a,b)=>a.name.length-b.name.length || a.name.localeCompare(b.name)); use=[g[0].f]; dup+=g.length-1; }
+    try{ const blob=await prepareSheet(use); const ok=await sheetPut(n,blob); if(ok==null) throw 0; haveSheets.add(n); }catch(e){ fail++; }
+    done++;
+    if(done%5===0 || done===nums.length){ $('scanMsg').innerHTML=`${done} / ${nums.length}장`; $('scanBar').style.width=(done/nums.length*100)+'%'; await new Promise(r=>setTimeout(r,0)); }
+  }
+  LS.set('folderInfo',{count:haveSheets.size, at:Date.now(), folder:(files[0]&&files[0].webkitRelativePath||'').split('/')[0]||''});
+  $('scanTitle').textContent = nums.length ? `악보 ${nums.length-fail}장을 연결했습니다 🙏` : '장 번호를 찾지 못했습니다';
+  let msg = nums.length ? `이제 장 번호를 누르면 악보가 바로 나옵니다.<br>이 휴대폰에 연결된 악보: 모두 <b>${haveSheets.size}장</b>` : '파일 이름에 장 번호(예: 438)가 들어 있는지 확인해 주세요.';
+  if(dup) msg+=`<br>같은 장 번호의 사진이 여러 개면 이름이 가장 짧은 것 하나를 썼습니다(${dup}개 건너뜀).`;
+  if(others) msg+=`<br>사진이 아닌 파일 ${others}개는 건너뛰었습니다.`;
+  if(fail) msg+=`<br>저장하지 못한 사진 ${fail}개가 있습니다. 휴대폰 저장 공간을 확인해 주세요.`;
+  $('scanMsg').innerHTML=msg; $('scanBar').style.width='100%';
+  if(bad.length) $('scanBad').textContent='장 번호를 못 찾은 파일:\n'+bad.slice(0,30).join('\n')+(bad.length>30?`\n… 외 ${bad.length-30}개`:'');
+  $('scanOk').classList.remove('hidden');
+  renderHome(); if(cur && !$('song').classList.contains('hidden')) showSheet();
+}
+$('scanOk').onclick=()=>scanUI(false);
 $('btnFolder').onclick=()=>$('fileDir').click();
-$('fileDir').onchange=async e=>{
-  const files=[...e.target.files]; e.target.value=''; let cnt=0;
-  for(const f of files){ if(!/\.(jpe?g|png|webp|gif)$/i.test(f.name)) continue; const m=f.name.match(/(?:^|\D)(\d{1,3})(?=\D|$)/); if(!m) continue; const n=+m[1]; if(n<1||n>645) continue; await sheetPut(n,f); haveSheets.add(n); cnt++; }
-  toast(cnt? `악보 ${cnt}장을 연결했습니다` : '장 번호가 들어간 악보 사진을 찾지 못했습니다', 3000); renderHome();
-};
+$('pickFolder2').onclick=()=>$('fileDir').click();
+$('fileDir').onchange=async e=>{ const fl=e.target.files; if(!fl||!fl.length) return; const copy=[...fl]; e.target.value=''; await importFolder(copy); };
+function renderFolderInfo(){
+  const n=haveSheets.size, info=LS.get('folderInfo',null), card=$('folderCard');
+  // 악보가 하나도 없으면 폴더 고르기 카드를 맨 위에, 있으면 맨 아래에
+  if(!n){ if(card.previousElementSibling!==$('q')) $('q').after(card); return; }
+  if(card.nextElementSibling!==document.querySelector('#home .homebtns')) document.querySelector('#home .homebtns').before(card);
+  const d=info? new Date(info.at) : null;
+  $('folderInfo').innerHTML=`이 휴대폰에 연결된 악보: <b>${n}장</b>`+(info&&info.folder?` (폴더: ${info.folder})`:'')+(d?`<br>마지막 연결 ${d.getMonth()+1}월 ${d.getDate()}일`:'')+`<br>악보를 더 넣었으면 같은 폴더를 다시 고르세요.`;
+  $('btnFolder').textContent='📁 악보 폴더 다시 고르기';
+  $('btnFolder').style.background=''; $('btnFolder').style.fontWeight='';
+}
 
 /* ---------- 시작 ---------- */
 (async()=>{
   await openDB();
   const ks=await sheetKeys(); if(ks) ks.forEach(k=>haveSheets.add(+k));
-  renderHome();
+  renderHome(); renderFolderInfo();
 })();
 </script>
 </body>
