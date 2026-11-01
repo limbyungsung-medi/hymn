@@ -198,7 +198,7 @@ input{font:inherit}
 
 <script>
 "use strict";
-const BUILD = "2026-10-30-3";
+const BUILD = "2026-11-01-1";
 document.getElementById('build').textContent = 'build ' + BUILD;
 
 /* =====================================================================
@@ -501,6 +501,150 @@ SONGS[88].data = buildSong({
   img:{w:1080,h:2340,cropTop:540,cropBottom:1990},
   systems:{1:[650,1005],2:[990,1343],3:[1325,1680],4:[1665,1965]},
   lyricRows:{1:[795,830,864],2:[1138,1173,1207],3:[1474,1508,1542],4:[1823]}, lyricH:15
+});
+
+/* ---- 2026-11-01 추가: 338·428·393·491장 ---- */
+Object.assign(SONGS, {
+  338: { title:"내 주를 가까이 하게 함은", tonic:"G", meter:"6/8", bpm:52, beatUnits:6, countBeats:2, verses:4 },
+  428: { title:"내 영혼에 햇빛 비치니", tonic:"Ab", meter:"4/4", bpm:100, beatUnits:4, countBeats:4, verses:4 },
+  393: { title:"오 신실하신 주", tonic:"Eb", meter:"3/4", bpm:88, beatUnits:4, countBeats:3, verses:3 },
+  491: { title:"저 높은 곳을 향하여", tonic:"Ab", meter:"3/4", bpm:104, beatUnits:4, countBeats:3, verses:5 }
+});
+
+// 338장 — BETHANY, L. Mason, 1856
+SONGS[338].data = buildSong({
+  E:{
+    M1:"6 B4 D4 G3 G3|4 A4 C4 F#3 D3|2 G4 B3 G3 E3",
+    M2:"4 G4 E4 C4 C3|2 E4 C4 G3 C3|6 E4 C4 G3 C3",
+    M3:"6 D4 D4 B3 G2|4 G4 D4 G3 B2|2 B4 D4 G3 G2",
+    M4:"12 A4 F#4 F#3 D3",
+    M7:"4 D4 B3 G3 D3:6|2 G4 D4 B3 -|4 F#4 D4 A3 D3|2 A4 D4 C4 D3",
+    M8:"12 G4 D4 B3 G2",
+    M9:"6 D5 G4 B3 G3|4 E5 G4 C4 G3|2 D5 G4 B3 G3",
+    M10:"4 D5 G4 B3 G3|2 B4 G4 G3 G3|6 D5 G4 B3 G3",
+    M11:"6 D5 G4 B3 G3|4 E5 G4 C4 C3|2 D5 G4 B3 G3",
+    M12:"4 D5 D4 A3 F#3|2 B4 D4 G3 G3|6 A4 D4 F#3 D3",
+    M13:"6 B4 D4 B3 G2|4 A4 C4 C4 A2|2 G4 B3 D4 B2",
+    A1:"6 G4 C4 E3 C3", A2:"6 G4 B3 D3 G2"
+  },
+  lines:[
+    {sys:1, m:[['M1',195,421],['M2',421,604],['M3',604,788],['M4',788,911]]},
+    {sys:2, m:[['M1',195,399],['M2',399,582],['M7',582,789],['M8',789,911]]},
+    {sys:3, m:[['M9',195,390],['M10',390,564],['M11',564,737],['M12',737,911]]},
+    {sys:4, m:[['M13',195,364],['M2',364,513],['M7',513,681],['M8',681,776]]}
+  ],
+  intro:[[12,16]],
+  amen:[['A1',4,781,843],['A2',4,843,905]],
+  img:{w:1080,h:2084,cropTop:330,cropBottom:1560},
+  systems:{1:[462,778],2:[742,1056],3:[1020,1336],4:[1312,1548]},
+  lyricRows:{1:[580,611,641,668],2:[857,887,922,949],3:[1136,1166,1199,1227],4:[1437]}, lyricH:14
+});
+
+// 428장 — SUNSHINE, J. R. Sweeney, 1887
+SONGS[428].data = buildSong({
+  E:{
+    P:"3 Ab4 C4 Eb3 Ab2|1 Bb4 Db4 Eb3 Ab2",
+    M1:"4 C5 Eb4 Ab3 Ab2|4 Eb4 C4 Ab3 Ab2|3 F4 Db4 Ab3 Db3|1 G4 Eb4 Ab3 Db3|3 Ab4 F4 Ab3 Db3|1 Bb4 F4 Ab3 Db3",
+    M2:"12 C5 Eb4 Ab3 Ab2|3 C5 Eb4 Ab3 Ab2|1 Db5 F4 Ab3 Ab2",
+    M3:"4 C5 Eb4 Ab3 Eb3|4 Bb4 Db4 G3 Eb3|4 Eb4 Db4 G3 Eb3|4 Bb4 Db4 G3 Eb3",
+    M4:"12 Ab4 C4 Eb3 Ab2",
+    M6:"12 C5 Eb4 Ab3 Ab2|4 C5 Eb4 Ab3 Ab2",
+    M7:"6 Bb4 Eb4 G3 Eb3|2 Bb4 Eb4 G3 Eb3|4 C5 Ab4 Bb3 Eb3|4 D5 Ab4 Bb3 Eb3",
+    M8:"12 Eb5 G4 Bb3 Eb3",
+    PR:"3 Eb5 G4 Bb3 Eb3|1 Db5 Eb4 Bb3 G3",
+    M9:"3 C5:8 Eb4:8 Ab3 Ab2:8|1 - - Ab3 -|4 - - C4 -|4 Ab4 Eb4 C4 Ab2|4/3 Bb4 F4 Db4 Db3:4|4/3 Ab4 F4 Db4 -|4/3 F4 Db4 Ab3 -",
+    M10:"3 Eb4:8 C4:8 Ab3 Ab2|1 - - Ab3 Ab2|4 - - Ab3 Ab2|4 C4 Ab3 Eb3 Ab2|3 C4 Ab3 Eb3 Ab2|1 Db4 Bb3 Eb3 Ab2",
+    M11:"4 Eb4 C4 Ab3 Ab2|4 Ab4 C4 Eb3 Ab2|3 C5 Eb4 Ab3 Eb3|1 Eb5 Eb4 C4 Eb3|3 Db5 Eb4 Bb3 Eb3|1 C5 Eb4 Ab3 Eb3",
+    M12:"3 Bb4:12 Eb4:12 G3 Eb3|1 - - G3 Eb3|3 - - G3 Eb3|1 - - G3 Eb3|3 - - G3 Eb3|1 - - G3 Eb3",
+    P4:"3 Eb5 Eb4:4 Bb3:4 G3:4|1 Db5 - - -",
+    M13:"4 C5 Eb4 Ab3 Ab2|4 C5 Eb4 Ab3 Ab2|6 Db5 F4 Ab3 Ab2|2 C5 Eb4 Ab3 Ab2",
+    M14:"2 C5 F4:4 Db4 Db3|2 Bb4 - Db4 -|2 Ab4 F4 Db4 Db3|2 F4 Db4 Ab3 -|4 Eb4 C4 Ab3 Ab2|2 Ab4 Eb4 Ab3 C3|2 Bb4 F4 Ab3 Db3",
+    M15:"2 C5 Eb4 Ab3 C3|6 C5 Eb4 Ab3 Eb3|4 Bb4 Db4 G3 Eb3|4 Bb4 Db4 G3 Eb3",
+    M16:"12 Ab4 C4 Eb3 Ab2"
+  },
+  lines:[
+    {sys:1, m:[['P',225,337],['M1',337,540],['M2',540,670],['M3',670,830],['M4',830,908]]},
+    {sys:2, m:[['P',215,304],['M1',304,520],['M6',520,647],['M7',647,821],['M8',821,908]]},
+    {sys:3, m:[['PR',215,300,'r'],['M9',300,465,'r'],['M10',465,617,'r'],['M11',617,774,'r'],['M12',774,909,'r']]},
+    {sys:4, m:[['P4',215,304,'r'],['M13',304,464,'r'],['M14',464,668,'r'],['M15',668,827,'r'],['M16',827,906,'r']]}
+  ],
+  intro:[[15,20]],
+  img:{w:1080,h:2084,cropTop:330,cropBottom:1540},
+  systems:{1:[455,762],2:[745,1052],3:[1050,1280],4:[1305,1530]},
+  lyricRows:{1:[568,601,633,665],2:[857,889,922,954],3:[1171],4:[1419]}, lyricH:15
+});
+
+// 393장 — FAITHFULNESS, W. M. Runyan, 1923
+SONGS[393].data = buildSong({
+  E:{
+    M1:"4 G4 Eb4 Bb3 Eb3|4 G4 Eb4 Bb3 Eb3|4 G4 Eb4 B3 Eb3",
+    M2:"6 G4 Eb4 C4 Ab2|2 F4 D4 C4 Ab2|4 F4 Eb4 C4 Ab2",
+    M3:"4 Ab4 D4 Bb3 Bb2|4 Ab4 Eb4 C4 Bb2|4 Ab4 F4 D4 Bb2",
+    M4:"4 Ab4 Eb4 C4 Eb3|8 G4 Eb4 Bb3 Eb3",
+    M5:"4 C5 Eb4 Ab3 Ab3|4 D5 Eb4 Bb3 Ab3|4 C5 Eb4 Ab3 Ab3",
+    M6:"6 Bb4 Eb4 Bb3 G3|2 Ab4 D4 Bb3 F3|4 G4 Eb4 Bb3 Eb3",
+    M7:"4 F4 Eb4 A3 C3|4 G4 E4 A3 C3|4 A4 Eb4 C4 F3",
+    M8:"12 Bb4 D4 Bb3 Bb2",
+    M9:"4 Bb4 Ab4 D4 Bb3|4 C5 Ab4 D4 Bb3|4 D5 Ab4 Bb3 Bb3",
+    M10:"6 Eb5 G4 Bb3 Eb3|2 D5 Bb4 C4 Eb3|4 C5 Ab4 D4 Eb3",
+    M11:"4 Bb4 G4 Eb4 Eb3|4 Ab4 F4 C4 F3|4 G4 Eb4 Bb3 G3",
+    M12:"4 G4 Eb4 C4 Ab3|8 F4 Eb4 C4 Ab3",
+    M13:"4 C5 F#4 C4 A3|4 D5 F#4 C4 A3|4 Eb5 F#4 C4 A3",
+    M14:"6 Eb5 G4 Bb3 Bb3|2 Bb4 G4 Eb4 Bb3|4 Bb4 G4 Eb4 Bb3",
+    M15:"4 G4 Eb4 Bb3 Bb2|4 G4 D4 F3 Bb2|4 F4 Bb3 Ab3 Bb2",
+    M16:"12 Eb4 Bb3 G3 Eb3",
+    M17:"4 Bb4 D4 F3 Bb2|4 Bb4 D4 F3 Bb2|4 F4 D4 Bb3 Bb2",
+    M18:"3 Ab4 Eb4 C4 Eb3|1 G4 Eb4 Bb3 Eb3|8 G4 Eb4 Bb3 Eb3",
+    M19:"4 C5 E4 Bb3 C3|4 C5 E4 G3 C3|4 G4 E4 C4 C3",
+    M20:"3 Bb4 F4 Db4 F3|1 Ab4 F4 C4 F3|8 Ab4 F4 C4 F3",
+    M22:"4 Eb5 G4 Bb3 Eb3|4 Bb4 G4 Bb3 Eb3|4 C5 Ab4 Bb3 Eb3",
+    M23:"4 D5 F4 Bb3 F3|4 Eb5 E4 Bb3 Eb3|4 C5 Eb4 A3 F3",
+    M24:"12 Bb4 D4 Bb3 Bb2",
+    M30:"6 Eb5 G4 Bb3 Bb3|2 Bb4 G4 Eb4 Bb3|4f Bb4 G4 Eb4 Bb3",
+    M31:"4 G4 Eb4 Bb3 Bb2|4 Ab4 D4 F3 Bb2|4 D4 Bb3 Ab3 Bb2",
+    M32:"12 Eb4 Bb3 G3 Eb3"
+  },
+  lines:[
+    {sys:1, m:[['M1',205,338],['M2',338,441],['M3',441,519],['M4',519,583],['M5',583,670],['M6',670,758],['M7',758,858],['M8',858,908]]},
+    {sys:2, m:[['M9',205,322],['M10',322,410],['M11',410,497],['M12',497,574],['M13',574,668],['M14',668,762],['M15',762,850],['M16',850,908]]},
+    {sys:3, m:[['M17',205,308,'r'],['M18',308,408,'r'],['M19',408,492,'r'],['M20',492,594,'r'],['M9',594,687,'r'],['M22',687,770,'r'],['M23',770,858,'r'],['M24',858,908,'r']]},
+    {sys:4, m:[['M9',205,322,'r'],['M10',322,409,'r'],['M11',409,496,'r'],['M12',496,573,'r'],['M13',573,667,'r'],['M30',667,761,'r'],['M31',761,849,'r'],['M32',849,906,'r']]}
+  ],
+  intro:[[24,32]],
+  img:{w:1080,h:2084,cropTop:330,cropBottom:1545},
+  systems:{1:[468,778],2:[770,1080],3:[1075,1305],4:[1300,1532]},
+  lyricRows:{1:[598,628,657],2:[895,924,954],3:[1194],4:[1420]}, lyricH:14
+});
+
+// 491장 — HIGHER GROUND, C. H. Gabriel, 1898
+SONGS[491].data = buildSong({
+  E:{
+    P:"2 Eb4 C4 Ab3 Ab2|2 Eb4 C4 Ab3 Ab2|2 Ab4 C4 Ab3 Ab2",
+    M1:"6 C5 Eb4 Ab3 Ab2|2 C5 Eb4 Ab3 Ab2|2 Bb4 Eb4 G3 Bb2|2 Ab4 Eb4 Ab3 C3",
+    M2:"6 F4 Db4 Ab3 Db3|2 Bb4 F4 Ab3 Db3|2 Ab4 F4 Ab3 Db3|2 F4 Db4 Ab3 Db3",
+    M3:"6 Eb4 C4 Ab3 Ab2|2 Ab4 C4 Ab3 Ab2|2 C5 Eb4 Ab3 Ab2|2 Ab4 Eb4 Ab3 C3",
+    M4:"6 Bb4 Eb4 G3 Eb3",
+    P2:"2 Eb4 Bb3 G3 Eb3|2 Eb4 C4 Ab3 Ab2|2 Ab4 C4 Ab3 Ab2",
+    M7:"2 Eb4 C4 Ab3 Eb3|2 Ab4 C4 Ab3 Eb3|4 C5 Eb4 Ab3 Eb3|4 Bb4 Db4 G3 Eb3",
+    M8:"6 Ab4 C4 Ab3 Ab2",
+    PR:"2 Eb4 C4 Ab3 -|2 Ab4 C4 Ab3 -|2 C5 Eb4 Ab3 -",
+    M9:"6 Eb5 Eb4 C4 Ab3|2 Eb5 Eb4 C4 Ab3|2 Db5 Eb4 Bb3 Ab3|2 C5 Eb4 Ab3 Ab3",
+    M10:"6 Db5 Eb4 G3 Eb3|2 Eb4 Eb4 G3 Eb3|2 G4 Eb4 Bb3 Eb3|2 Bb4 G4 Eb4 Eb3",
+    M11:"6 Db5 Bb4 Eb4 Eb3|2 Db5 Bb4 Eb4 Eb3|2 C5 Ab4 Eb4 Eb3|2 Bb4 G4 Eb4 Eb3",
+    M12:"6 C5 Ab4 Eb4 Ab3",
+    P4:"2 Eb5 Eb4 C4 Ab3|2 Eb5 Eb4 C4 Ab3|2 C5 Eb4 Eb4 Ab3",
+    M13:"6 Ab4 Eb4 C4 Ab3|2 C5 Eb4 Ab3 Ab2|2 Bb4 Eb4 G3 Bb2|2 Ab4 Eb4 Ab3 C3"
+  },
+  lines:[
+    {sys:1, m:[['P',245,368],['M1',368,527],['M2',527,687],['M3',687,846],['M4',846,913]]},
+    {sys:2, m:[['P2',225,350],['M1',350,514],['M2',514,678],['M7',678,843],['M8',843,913]]},
+    {sys:3, m:[['PR',225,350,'r'],['M9',350,515,'r'],['M10',515,681,'r'],['M11',681,843,'r'],['M12',843,913,'r']]},
+    {sys:4, m:[['P4',225,350,'r'],['M13',350,514,'r'],['M2',514,678,'r'],['M7',678,842,'r'],['M8',842,910,'r']]}
+  ],
+  intro:[[15,20]],
+  img:{w:1080,h:2084,cropTop:330,cropBottom:1540},
+  systems:{1:[458,795],2:[766,1110],3:[1090,1332],4:[1300,1528]},
+  lyricRows:{1:[572,603,633,664,695],2:[888,918,948,979,1010],3:[1215],4:[1421]}, lyricH:14
 });
 
 /* ---------------- 음 이름 ---------------- */
