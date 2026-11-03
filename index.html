@@ -200,7 +200,7 @@ input{font:inherit}
 
 <script>
 "use strict";
-const BUILD = "2026-11-02-2";
+const BUILD = "2026-11-03-1";
 document.getElementById('build').textContent = 'build ' + BUILD;
 
 /* =====================================================================
@@ -783,6 +783,149 @@ SONGS[419].data = buildSong({
   img:{w:1080,h:1610,cropTop:150,cropBottom:1530},
   systems:{1:[174,560],2:[558,944],3:[944,1233],4:[1233,1522]},
   lyricRows:{1:[337,372,409],2:[722,757,792],3:[1092],4:[1388]}, lyricH:18
+});
+
+/* ---- 2026-11-03 추가: 273·478·497·563장 ---- */
+Object.assign(SONGS, {
+  273: { title:"나 주를 멀리 떠났다", tonic:"Ab", meter:"4/4", bpm:76, beatUnits:4, countBeats:4, verses:5 },
+  478: { title:"참 아름다워라", tonic:"Eb", meter:"4/4", bpm:96, beatUnits:4, countBeats:4, verses:3 },
+  497: { title:"주 예수 넓은 사랑", tonic:"Ab", meter:"4/4", bpm:92, beatUnits:4, countBeats:4, verses:3 },
+  563: { title:"예수 사랑하심을", tonic:"Eb", meter:"2/4", bpm:96, beatUnits:4, countBeats:2, verses:4 },
+  461: { title:"십자가를 질 수 있나" }
+});
+
+// 273장 — COMING HOME, W. J. Kirkpatrick, 1892
+SONGS[273].data = buildSong({
+  E:{
+    P:"4 Eb4 C4 Ab3 Ab2",
+    M1:"6 C5 Eb4 Ab3 Ab2|2 C5 Eb4 Ab3 Ab2|6 Ab4 C4 Eb3 Ab2|2 Ab4 Eb4 Ab3 C3",
+    M2:"2 F4 Db4 Ab3:6 Db3:6|4 Ab4 F4 - -|2 F4 Db4 Ab3 Db3|8 Eb4 C4 Ab3 Ab2",
+    M3:"4 Ab4 C4 Eb3 Ab2|4 Ab4 C4 Eb3 Ab2|2 C5 Eb4 Ab3 C3|6 C5 Eb4 Ab3 C3",
+    M4:"12 Bb4 Eb4 G3 Eb3",
+    M7:"4 Ab4 C4 Ab3 F3|4 Ab4 C4 Ab3 F3|2 Bb4 Db4 G3 Eb3|6 Bb4 Db4 G3 Eb3",
+    M8:"12 Ab4 C4 Ab3 Ab2|4 - - - -",
+    M9:"2 C5 Eb4 Ab3 Ab2|6 C5 Eb4 Ab3 Ab2|8 Ab4 C4 Ab3 Ab2",
+    M10:"2 Ab4 F4 Ab3 Db3|6 Ab4 F4 Ab3 Db3|8 F4 Db4 Ab3 Db3",
+    M11:"4 Eb4 C4 Ab3 Ab2|4 C5 Eb4 Ab3 Ab2|4 C5 Eb4 Ab3 Ab2|4 Ab4 Eb4 Ab3 C3",
+    M12:"12 Bb4 Eb4 G3 Eb3|4 - - - -",
+    M16:"12 Ab4 C4 Ab3 Ab2"
+  },
+  lines:[
+    {sys:1, m:[['P',150,270],['M1',270,480],['M2',480,686],['M3',686,896],['M4',896,1003]]},
+    {sys:2, m:[['P',130,236],['M1',236,442],['M2',442,643],['M7',643,849],['M8',849,1003]]},
+    {sys:3, m:[['M9',130,380,'r'],['M10',380,588,'r'],['M11',588,826,'r'],['M12',826,1003,'r']]},
+    {sys:4, m:[['M1',130,410,'r'],['M2',410,643,'r'],['M7',643,881,'r'],['M16',881,991,'r']]}
+  ],
+  intro:[[14,18]],
+  img:{w:1080,h:1542,cropTop:110,cropBottom:1460},
+  systems:{1:[140,565],2:[532,946],3:[935,1206],4:[1180,1450]},
+  lyricRows:{1:[290,326,363,401,435],2:[679,717,750,790,822],3:[1077],4:[1321]}, lyricH:16
+});
+
+// 478장 — TERRA BEATA, 영국 민요, Adapt. F. L. Sheppard, 1915
+SONGS[478].data = buildSong({
+  E:{
+    P:"2 Eb4 Bb3:4 G3 Eb3:4|2 F4 - Ab3 -",
+    M1:"4 G4 Eb4 Bb3 Eb3|4 Bb4 Eb4 G3 Eb3|4 G4 D4 Bb3 Bb2|4 F4 D4 Ab3 Bb2",
+    M2:"12 Eb4 Eb4 G3 Eb3|2 F4 Eb4:4 Ab3 Eb3:4|2 G4 - Bb3 -",
+    M3:"4 Ab4 Eb4 C4 Eb3|4 C5 Eb4 Ab3 Eb3|4 Bb4 Eb4 G3 Eb3|4 G4 Eb4 Bb3 Eb3",
+    M4:"12 F4 D4 Bb3 Bb2",
+    P2:"4 C5 D4 Ab3 Bb2",
+    M5:"4 Bb4 Eb4 G3 Eb3|4 G4 Eb4 Bb3 Eb3|4 G4 D4 Bb3 Bb2|2 F4 D4:4 Ab3 Bb2:4|2 Eb4 - G3 -",
+    M6:"4 G4 D4 Bb3 Bb2|4 F4 D4 Ab3 Bb2|4 Eb4 Bb3 G3 Eb3|4 Bb3 Bb3 Bb3 D3",
+    M7:"2 Eb4 Bb3:4 G3 Eb3:4|2 F4 - Ab3 -|4 G4 Eb4 Bb3 Eb3|4 Bb4 D4 Bb3 Bb2|2 F4 D4:4 Ab3:4 Bb2:4|2 G4 - - -",
+    M8:"12 Eb4 Eb4 G3 Eb3",
+    P3:"2 Bb4:4 F4:4 Bb3 D3:4|2 - - Ab3 -",
+    M9:"4 Eb5 Eb4 G3 Eb3|4 Bb4 G4 Bb3 Eb3|4 C5 Ab4 Ab3 Ab2|4 D5 Ab4 Bb3 F3",
+    M10:"12 Eb5 G4 Bb3 Eb3|2 Eb5 Eb4:4 Bb3:4 G3:4|2 D5 - - -",
+    M11:"4 C5 Eb4 Ab3 Ab2|4 Eb5 Eb4 C4 Ab2|4 D5 Eb4 Bb3 Ab2|4 C5 Eb4 Ab3 Ab2",
+    M12:"12 Bb4 Eb4 G3 Eb3",
+    A1:"8 Eb4 C4 Ab3 Ab2", A2:"8 Eb4 Bb3 G3 Eb3"
+  },
+  lines:[
+    {sys:1, m:[['P',150,265],['M1',265,483],['M2',483,665],['M3',665,883],['M4',883,994]]},
+    {sys:2, m:[['P2',130,217],['M5',217,441],['M6',441,647],['M7',647,888],['M8',888,994]]},
+    {sys:3, m:[['P3',130,241],['M9',241,467],['M10',467,653],['M11',653,879],['M12',879,994]]},
+    {sys:4, m:[['P2',130,208],['M5',208,410],['M6',410,577],['M7',577,780],['M8',780,860]]}
+  ],
+  intro:[[15,20]],
+  amen:[['A1',4,867,924],['A2',4,924,981]],
+  img:{w:1080,h:1577,cropTop:120,cropBottom:1480},
+  systems:{1:[176,536],2:[489,848],3:[801,1160],4:[1114,1472]},
+  lyricRows:{1:[324,370,412],2:[636,675,719],3:[942,985,1029],4:[1254,1301,1342]}, lyricH:18
+});
+
+// 497장 — HANKEY, W. G. Fischer, 1869
+SONGS[497].data = buildSong({
+  E:{
+    P:"4 Eb4 C4 Ab3 Ab2", P2:"4 Eb4 Eb4 Eb3 Eb3", P3:"4 Bb4 Eb4 G3 Eb3", P4:"4 G4 E4 Bb3 C3", P6:"4 C5 Eb4 Ab3 Ab3",
+    M1:"6 Ab4 C4 Eb3 Ab2|2 Eb4 C4 Ab3 Ab2|4 Eb4 C4 Ab3 Ab2|4 Ab4 C4 Ab3 Ab2",
+    M2:"6 C5 Eb4 Ab3:8 Ab2:8|2 Bb4 Db4 - -|4 Ab4 C4 Ab3 Ab2|4 Ab4 Eb4 Ab3 C3",
+    M3:"6 Ab4 F4 Ab3 Db3|2 F4 Db4 Ab3 Db3|2 Bb4 F4:4 Ab3:4 Db3:4|2 Ab4 - - -|4 F4 Db4 Ab3 Db3",
+    M4:"12 Eb4 C4 Ab3 Ab2",
+    M5:"6 Bb4 G4 Db4 Eb3|2 A4 F#4 C4 Eb3|4 Bb4 G4 Db4 Eb3|4 C5 G4 Eb4 Eb3",
+    M6:"4 Bb4 Eb4 Db4 Ab2|8 Ab4 Eb4 C4 Ab2|2 Ab4 Eb4:4 C4:4 Ab3:4|2 C5 - - -",
+    M7:"6 Eb5 Ab4 C4 Ab3|2 C5 Eb4 Ab3 Ab2|2 C5 Eb4:4 Ab3 Ab2|2 Bb4 - G3 Bb2|4 Ab4 Eb4 Ab3 C3",
+    M8:"12 Bb4 Eb4 G3 Eb3",
+    M9:"6 Bb4 Eb4 G3 Eb3|2 C5 Eb4 Ab3 Eb3|4 Db5 Eb4 Bb3 Eb3|4 Db5 Eb4 Bb3 Eb3",
+    M10:"4 Db5 Eb4 Bb3 Ab2|8 C5 Eb4 Ab3 Ab2|4 C5 Eb4 Ab3 Ab3",
+    M11:"6 C5 Ab4 Ab3 F3|2 Bb4 G4 Bb3 F3|4 Ab4 F4 C4 F3|2 Bb4 G4 C4 F3|2 Ab4 F4 C4 F3",
+    M12:"12 G4 E4 C4 C3",
+    M13:"6 F4 F4 Ab3 Db3|2 G4 E4 Ab3 Db3|4 Ab4 F4 Ab3 Db3|4 F4 Db4 Ab3 Db3",
+    M14:"4 F4 Db4 Ab3 Ab2|8 Eb4 C4 Ab3 Ab2|4 Ab4 Eb4 C4 Ab2",
+    M15:"6 Bb4 G4 Db4 Eb3|2 Ab4 F4 C4 Eb3|6 C5 Ab4 Eb4 Eb3|2 Bb4 Eb4 Db4 Eb3",
+    M16:"12 Ab4 Eb4 C4 Ab2",
+    M17:"6 Eb4 Eb4 G3 Eb3|2 G4 Eb4 Bb3 Eb3|6 Bb4 Eb4 Db4 Eb3|2 C5 Eb4 Eb4 Eb3",
+    M18:"4 Bb4 Eb4 Db4 Ab2|8 Ab4 Eb4 C4 Ab2|4 Ab4 Eb4 Ab3 C3",
+    M19:"6 Ab4 F4 Ab3 Db3|2 Db5 F4 Ab3 Db3|4 Db5 F4 Ab3 Db3|4 Db5 F4 Ab3 Db3",
+    M20:"4 Db5 F4 Ab3 Ab2|8 C5 Eb4 Ab3 Ab2",
+    M22:"4 Bb4 F4 Ab3 Db3|8 Ab4 F4 Db4 Db3|4 F4 Db4 Ab3 Db3",
+    M23:"4 Eb4 C4 Ab3 Eb3|4 Ab4 Eb4 C4 Eb3|6 Bb4 G4 Db4 Eb3|2 Ab4 Eb4 C4 Ab2",
+    M24:"12 Ab4 Eb4 C4 Ab2"
+  },
+  lines:[
+    {sys:1, m:[['P',150,260],['M1',260,465],['M2',465,671],['M3',671,896],['M4',896,1001]]},
+    {sys:2, m:[['P2',140,237],['M5',237,452],['M6',452,660],['M7',660,892],['M8',892,1001]]},
+    {sys:3, m:[['P3',140,238],['M9',238,455],['M10',455,648],['M11',648,884],['M12',884,1001]]},
+    {sys:4, m:[['P4',140,248],['M13',248,471],['M14',471,667],['M15',667,887],['M16',887,1001]]},
+    {sys:5, m:[['P',140,237,'r'],['M17',237,452,'r'],['M18',452,643,'r'],['M19',643,859,'r'],['M20',859,1001,'r']]},
+    {sys:6, m:[['P6',140,238,'r'],['M7',238,476,'r'],['M22',476,669,'r'],['M23',669,888,'r'],['M24',888,989,'r']]}
+  ],
+  intro:[[25,30]],
+  img:{w:1080,h:1822,cropTop:120,cropBottom:1760},
+  systems:{1:[149,453],2:[415,720],3:[684,989],4:[953,1278],5:[1261,1507],6:[1479,1752]},
+  lyricRows:{1:[278,309,343],2:[533,569,602],3:[806,840,873],4:[1086,1119,1151],5:[1388],6:[1619]}, lyricH:15
+});
+
+// 563장 — CHINA, W. B. Bradbury, 1862
+SONGS[563].data = buildSong({
+  E:{
+    M1:"2 Bb4 G4 Bb3 Eb3|2 G4 Eb4 Bb3 Eb3|2 G4 Eb4 Bb3 Eb3|2 F4 D4 Bb3 Bb2",
+    M2:"2 G4 Eb4 Bb3 Eb3|2 Bb4 Eb4 G3 Eb3|4 Bb4 Eb4 G3 Eb3",
+    M3:"2 C5 Eb4 Ab3 Ab2|2 C5 Eb4 Ab3 Ab2|2 Eb5 Eb4 Ab3 C3|2 C5 Eb4 Ab3 C3",
+    M4:"2 C5 Eb4 Ab3 Eb3|2 Bb4 Eb4 G3 Eb3|4 Bb4 Eb4 G3 Eb3",
+    M7:"2 C5 Eb4 Ab3 Ab2|2 C5 Eb4 Ab3 C3|2 Bb4 Eb4 G3 Eb3|2 Eb4 Eb4 Bb3 G3",
+    M8:"2 G4 Eb4 Bb3 Bb2:4|2 F4 D4 Ab3 -|4 Eb4 Eb4 G3 Eb3",
+    M9:"4 Bb4 G4 Bb3 Eb3|2 G4 Eb4 Bb3 Eb3|2 Bb4 G4 Eb4 Eb3",
+    M10:"2 C5 Ab4 Eb4 Ab3|6 Eb5 C5 C4 Ab3",
+    M11:"4 Bb4 G4 Eb4 Eb3|2 G4 Eb4 Bb3 Eb3|2 Eb4 Eb4 Bb3 G3",
+    M12:"2 G4 Eb4 Bb3 Bb2:8|6 F4 D4 Bb3 -",
+    M14:"2 C5 Ab4 Eb4 Ab3|4 Eb5 Ab4 C4 Ab3|2 C5 Ab4 Eb4 Ab3",
+    M15:"2 Bb4 G4 Eb4 Eb3|2 Eb4 Eb4 Bb3 G3|2 G4:3 Eb4 Bb3 Bb2:4|1 - D4 Ab3 -|1 F4 - - -",
+    M16:"8 Eb4 Eb4 G3 Eb3",
+    A1:"8 Ab4 Eb4 C4 Ab2", A2:"8 G4 Eb4 Bb3 Eb3"
+  },
+  lines:[
+    {sys:1, m:[['M1',150,398],['M2',398,587],['M3',587,805],['M4',805,995]]},
+    {sys:2, m:[['M1',140,378],['M2',378,574],['M7',574,798],['M8',798,995]]},
+    {sys:3, m:[['M9',140,383,'r'],['M10',383,574,'r'],['M11',574,803,'r'],['M12',803,995,'r']]},
+    {sys:4, m:[['M9',140,314,'r'],['M14',314,471,'r'],['M15',471,677,'r'],['M16',677,777,'r']]}
+  ],
+  intro:[[12,16]],
+  amen:[['A1',4,784,889],['A2',4,889,982]],
+  img:{w:1080,h:1565,cropTop:120,cropBottom:1480},
+  systems:{1:[156,540],2:[516,922],3:[916,1212],4:[1178,1472]},
+  lyricRows:{1:[290,331,368,412],2:[664,707,745,782],3:[1065],4:[1332]}, lyricH:17
 });
 
 /* ---------------- 음 이름 ---------------- */
