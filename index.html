@@ -200,7 +200,7 @@ input{font:inherit}
 
 <script>
 "use strict";
-const BUILD = "2026-11-04-4";
+const BUILD = "2026-11-05-1";
 document.getElementById('build').textContent = 'build ' + BUILD;
 
 /* =====================================================================
@@ -1359,6 +1359,163 @@ SONGS[539].data = buildSong({
   img:{w:1080,h:1590,cropTop:140,cropBottom:1480},
   systems:{1:[181,571],2:[550,940],3:[934,1197],4:[1190,1464]},
   lyricRows:{1:[328,367,408,447],2:[695,736,777,818],3:[1070],4:[1337]}, lyricH:18
+});
+
+/* ---- 2026-11-04 추가: 545·546·549·246·254장 ---- */
+Object.assign(SONGS, {
+  545: { title:"이 눈에 아무 증거 아니 뵈어도", tonic:"Ab", meter:"4/4", bpm:104, beatUnits:4, countBeats:4, verses:3 },
+  546: { title:"주님 약속하신 말씀 위에 서", tonic:"Bb", meter:"4/4", bpm:104, beatUnits:4, countBeats:4, verses:4 },
+  549: { title:"내 주여 뜻대로", tonic:"Eb", meter:"4/4", bpm:84, beatUnits:4, countBeats:4, verses:3 },
+  246: { title:"나 가나안 땅 귀한 성에", tonic:"Ab", meter:"4/4", bpm:92, beatUnits:4, countBeats:4, verses:3 },
+  254: { title:"내 주의 보혈은", tonic:"Eb", meter:"3/4", bpm:84, beatUnits:4, countBeats:3, verses:5 }
+});
+
+// 545장 — CUSHING, R. Lowry(1826-1899)
+SONGS[545].data = buildSong({
+  E:{
+    M1:"4 Eb4 C4 Ab3 Ab2|3 Ab4 C4 Ab3 Ab2|1 Bb4 Eb4 Ab3 Ab2|2 C5 Eb4 Ab3 Ab2|2 C5 Eb4 Ab3 Ab2|2 Bb4 Eb4 Ab3 C3|2 Ab4 Eb4 Ab3 C3",
+    M2:"2 Ab4 Db4 F3 Db3|2 Ab4 F4 Ab3 Db3|2 G4 Eb4 Ab3 Db3|2 F4 Db4 Ab3 Db3|8 Eb4 C4 Ab3 Ab2",
+    M3:"2 Eb4 Bb3 G3 Eb3|2 G4 Eb4 Bb3 Eb3|2 G4 Eb4 Bb3 Eb3|2 G4 Eb4 Bb3 Eb3|2 G4 Eb4 Bb3 Eb3|2 Bb4 Eb4 G3 Eb3|2 Bb4 Eb4 G3 Eb3|2 G4 Eb4 Bb3 Db3",
+    M4:"4 Ab4 Eb4 C4 C3|4 Db5 Eb4 G3 Bb2|4 C5 Eb4 Ab3 Ab2|2 Bb4:4 Eb4 G3:4 Eb3:4|2 - Db4 - -",
+    M7:"2 F4 Db4 Ab3 Db3|2 G4 Eb4 Bb3 Db3|2 Ab4 Eb4 Ab3 C3|2 Bb4 Eb4 G3 Eb3|2 C5 Eb4 C4 Ab2|2 C5 Eb4 C4 Ab2|2 Eb5 Eb4 Ab3 C3|2 Db5 F4 Ab3 Db3",
+    M8:"4 C5 Eb4 Ab3 Eb3|4 Bb4 Eb4 Db4 Eb3|8 Ab4 C4 C4 Ab2",
+    R1:"4 C5 Ab4 Eb4 Ab3|4 Eb5 Ab4 C4 Ab3|3 C5 Eb4 Ab3 Ab2|1 Bb4 Db4 Ab3 Ab2|4 Ab4 C4 Ab3 Ab2",
+    R2:"2 Ab4 Db4 F3 Db3|2 Bb4 Db4 F3 Db3|2 Ab4 Db4 F3 Db3|2 F4 Db4 Ab3 Db3|4 F4 Db4 Ab3 Ab2|4 Eb4 C4 Ab3 Ab2",
+    R3:"2 G4 Eb4 Bb3 Eb3|2 G4 Eb4 Bb3 Eb3|4 G4 Eb4 Bb3 Eb3|2 Ab4 Eb4 C4 Eb3|2 Ab4 Eb4 C4 Eb3|4 Ab4 Eb4 C4 Eb3",
+    R4:"2 Bb4 G4 Eb4 Eb3|2 C5 Ab4 Eb4 Eb3|2 Db5 Bb4 Eb4 Eb3|2 C5 Ab4 Eb4 Eb3|8 Bb4 G4 Eb4 Eb3"
+  },
+  lines:[
+    {sys:1, m:[['M1',181,416],['M2',416,589],['M3',589,842],['M4',842,1001]]},
+    {sys:2, m:[['M1',150,414],['M2',414,601],['M7',601,865],['M8',865,1001]]},
+    {sys:3, m:[['R1',150,367,'r'],['R2',367,587,'r'],['R3',587,807,'r'],['R4',807,1001,'r']]},
+    {sys:4, m:[['R1',150,363,'r'],['R2',363,581,'r'],['M7',581,846,'r'],['M8',846,989,'r']]}
+  ],
+  intro:[[12,16]],
+  img:{w:1051,h:1580,cropTop:120,cropBottom:1480},
+  systems:{1:[165,525],2:[527,887],3:[896,1195],4:[1181,1469]},
+  lyricRows:{1:[307,350,392],2:[674,712,754],3:[1052],4:[1330]}, lyricH:18
+});
+
+// 546장 — PROMISES, R. K. Carter, 1886
+SONGS[546].data = buildSong({
+  E:{
+    M1:"3 F4 D4 Bb3 Bb2|1 F4 D4 Bb3 Bb2|3 F4 D4 Bb3 Bb2|1 G4 Eb4 Bb3 Bb2|3 F4 D4 Bb3 Bb2|1 Eb4 C4 F3 Bb2|3 D4 Bb3 F3 Bb2|1 Eb4 C4 F3 Bb2",
+    M2:"4 F4 D4 Bb3 Bb2|4 Bb4 D4 Bb3 Bb2|8 Bb4 D4 Bb3 Bb2",
+    M3:"3 G4 Eb4 Bb3 Eb3|1 G4 Eb4 Bb3 Eb3|3 G4 Eb4 Bb3 Eb3|1 Ab4 F4 Bb3 Eb3|3 Bb4 G4 Eb4 Eb3|1 Bb4 G4 Eb4 Eb3|3 Ab4 F4 Bb3 Eb3|1 G4 Eb4 Bb3 Eb3",
+    M4:"4 G4 Eb4 Bb3 Bb2|4 F4 D4 Bb3 Bb2|8 F4 D4 Bb3 Bb2",
+    M7:"3 D5 F4 Bb3 Bb2|1 D5 F4 Bb3 Bb2|3 Bb4 D4 F3 Bb2|1 Bb4 D4 F3 Bb2|3 C5 Eb4 G3 C3|1 C5 Eb4 G3 C3|3 A4 Eb4 C4 F2|1 A4 Eb4 C4 F2",
+    M8:"12 Bb4 D4 F3 Bb2|4 - - - -",
+    M9:"3 D5:8 D4 Bb3 Bb2|1 - D4 Bb3 Bb2|3 - D4 Bb3 Bb2|1 - D4 Bb3 Bb2|3 Bb4:8 D4 Bb3 Bb2|1 - D4 Bb3 Bb2|4 - D4 Bb3 Bb2",
+    M10:"3 G4:8 Eb4 G3 Eb3|1 - Eb4 G3 Eb3|3 - Eb4 G3 Eb3|1 - Eb4 G3 Eb3|3 Bb4:8 D4 Bb3 G2|1 - D4 Bb3 G2|4 - D4 Bb3 G2",
+    M11:"3 C5 F4 A3 F3|1 C5 F4 A3 F3|3 C5 F4 A3 F3|1 C5 F4 A3 F3|3 C5 F4 A3 F3|1 C5 F4 A3 F3|3 Bb4 F4 Eb4 F3|1 C5 F4 A3 F3",
+    M12:"4 D5 F4 Bb3 Bb2|4 Bb4 D4 F3 Bb2|4 G4 Eb4 Bb3 Eb3|4 Bb4 D4 F3 Bb2",
+    M14:"3 G4:8 Eb4 G3 Eb3|1 - Eb4 G3 Eb3|3 - Eb4 G3 Eb3|1 - Eb4 G3 Eb3|4f Eb5 Eb4 G3 C3|2 - - - -|2 C5 Eb4 G3 Eb3",
+    M15:"3 Bb4 D4 Bb3 F3|1 Bb4 D4 Bb3 F3|3 Bb4 D4 Bb3 F3|1 C5 Eb4 A3 F3|3 D5 F4 Bb3 F3|1 D5 F4 Bb3 F3|3 C5 Eb4 A3 F3|1 C5 Eb4 A3 F3",
+    M16:"12 Bb4 D4 F3 Bb2|4 - - - -"
+  },
+  lines:[
+    {sys:1, m:[['M1',160,453],['M2',453,584],['M3',584,865],['M4',865,996]]},
+    {sys:2, m:[['M1',140,437],['M2',437,582],['M7',582,873],['M8',873,996]]},
+    {sys:3, m:[['M9',140,358,'r'],['M10',358,569,'r'],['M11',569,855,'r'],['M12',855,996,'r']]},
+    {sys:4, m:[['M9',140,362,'r'],['M14',362,604,'r'],['M15',604,884,'r'],['M16',884,985,'r']]}
+  ],
+  intro:[[12,16]],
+  img:{w:1080,h:1583,cropTop:120,cropBottom:1460},
+  systems:{1:[158,518],2:[487,842],3:[845,1113],4:[1135,1404]},
+  lyricRows:{1:[293,327,360,395],2:[615,650,684,718],3:[989],4:[1279]}, lyricH:15
+});
+
+// 549장 — JEWETT, C. M. von Weber, 1820 / Arr. J. P. Holbrook, 1862
+SONGS[549].data = buildSong({
+  E:{
+    M1:"8 Bb4 G4 Bb3 Eb3|2 G4:4 Eb4:4 Eb4 Eb3:4|2 - - Bb3 -|2 Eb4 Eb4:4 G3 Eb3:4|2 G4 - Bb3 -",
+    M2:"6 F4 D4 Bb3 Bb2|1 Ab4 Bb3:2 Bb3:2 Bb2:2|1 G4 - - -|4 F4 D4 Bb3 Bb2|4 - - - -",
+    M3:"8 G4 Eb4 Bb3 Eb3|4 Eb4 Bb3 G3 Eb3|2 G4 Eb4 Bb3 Eb3|2 Bb4 G4 Bb3 Eb3",
+    M4:"6 Bb4 G4 Bb3 Bb2|2 Ab4 F4 Bb3 Bb2|4 G4 Eb4 Bb3 Eb3|4 - - - -",
+    M5:"8 C5 Ab4 Ab3 Eb3|2 C5:4 Ab4 C4 Eb3:4|2 - Eb4 C4 -|2 Ab4 Eb4 Eb4 Eb3|2 C5 Ab4 Eb4 Eb3",
+    M6:"6 Bb4 G4 Eb4 Eb3|2 Bb4 G4 Bb3 Eb3|4 G4 Eb4 Bb3 Eb3|2 Eb4 Eb4:4 G3 Eb3:4|2 G4 - Bb3 -",
+    M7:"2 Bb4 G4 Bb3:4 Bb2:4|2 Ab4 F4 - -|4 F4 D4 Bb3 Bb2|2 Ab4 F4 Bb3:4 Bb2:4|2 G4 Eb4 - -|4 Eb4 Eb4 G3 Eb3",
+    M8:"8 F4 D4:12 Bb3:12 Bb2:12|4 Bb4 - - -|4 - - - -",
+    M11:"8 G4 Eb4 Bb3 Eb3|4 Eb4 Bb3 G3 Eb3|2 G4 Eb4 Bb3 Eb3|2 Bb4 G4 Db4 Eb3",
+    M12:"6 Bb4 G4 Db4 Eb3|2 B4 G4 Db4 Eb3|4 C5 Ab4 C4 Ab2|4 - - - -",
+    M13:"8 C5 Ab4 C4 Ab2|2 C5:4 Ab4 C4 Ab2:4|2 - Eb4 C4 -|2 Ab4 Eb4 Eb4 Ab2|2 C5 Ab4 Eb4 Ab2",
+    M15:"3 Bb4 G4 Eb4 Bb2|1 G4 Eb4 G3 Bb2|8 G4 Eb4 Bb3 Eb3|4 F4 D4 Ab3 Bb2",
+    M16:"12 Eb4 Bb3 G3 Eb3|4 - - - -",
+    A1:"8 Ab4 Eb4 C4 Ab2", A2:"8 G4 Eb4 Bb3 Eb3"
+  },
+  lines:[
+    {sys:1, m:[['M1',150,401],['M2',401,608],['M3',608,804],['M4',804,1000]]},
+    {sys:2, m:[['M5',150,366],['M6',366,579],['M7',579,826],['M8',826,1000]]},
+    {sys:3, m:[['M1',150,375],['M2',375,591],['M11',591,790],['M12',790,1000]]},
+    {sys:4, m:[['M13',150,349],['M6',349,545],['M15',545,730],['M16',730,857]]}
+  ],
+  intro:[[12,16]],
+  amen:[['A1',4,864,926],['A2',4,926,988]],
+  img:{w:1080,h:1593,cropTop:120,cropBottom:1490},
+  systems:{1:[162,524],2:[479,842],3:[797,1160],4:[1115,1478]},
+  lyricRows:{1:[309,345,382],2:[630,661,692],3:[942,979,1013],4:[1262,1298,1336]}, lyricH:16
+});
+
+// 246장 — THE HEALING WATERS, P. P. Bilhorn(1865-1936)
+SONGS[246].data = buildSong({
+  E:{
+    P:"4 Eb4 C4 Ab3 Ab2",
+    M1:"2 Eb4 C4 Ab3 Ab2|2 Ab4 C4 Eb3 Ab2|2 Ab4 C4 Eb3 Ab2|2 Bb4 Db4 Eb3 Ab2|2 C5 Eb4 Ab3 Ab2|2 Ab4 C4 Eb3 Ab2|2 Ab4 C4 Eb3 Ab2|2 G4 Eb4 Ab3 C3",
+    M2:"1 F4 Db4 Ab3 Db3|3 Ab4 F4 Db4 Db3|3 Ab4 F4 Db4 Db3|1 F4 Db4 Ab3 Db3|6 Eb4 C4 Ab3 Ab2|2 Eb4 C4 Ab3 Ab2",
+    M3:"1 Eb4 C4 Ab3 Ab2|3 Ab4 C4 Eb3 Ab2|2 Ab4 C4 Eb3 Ab2|2 Bb4 Db4 Eb3 Ab2|1 C5 Eb4 Ab3 C3|3 C5 Eb4 Ab3 C3|1 Bb4 Eb4 G3 Bb2|3 Ab4 D4 F3 Bb2",
+    M4:"12 Bb4 Db4 G3 Eb3|2 - - - -",
+    P2:"2 Eb4 Bb3 G3 Eb3",
+    M7:"1 Eb4 C4 Ab3 Ab2|3 Ab4 C4 Eb3 Ab2|2 Ab4 C4 Eb3 Ab2|2 Bb4 Db4 G3 Eb3|1 C5 Eb4 C4 F3|3 C5 Eb4 C4 F3|1 Bb4 Db4 G3 Eb3|3 Bb4 Db4 G3 Eb3",
+    M8:"8 Ab4 C4 Eb3 Ab2|4 - - - -",
+    M9:"1 C5 Eb4 Ab3 Ab2|3 Eb5 Eb4 C4 Ab2|3 Eb5 Eb4 C4 Ab2|1 C5 Eb4 Ab3 Ab2|6 Ab4 C4 Ab3 Ab2|2 G4 Eb4 Ab3 C3",
+    M12:"12 Bb4 Eb4 G3 Eb3|4 - - - -",
+    M16:"4 Ab4:12 C4 Eb3 Ab2:12|3 - Db4 F3 -|1 - Db4 E3 -|4f - C4 Eb3 Ab2"
+  },
+  lines:[
+    {sys:1, m:[['P',150,232],['M1',232,483],['M2',483,660],['M3',660,927],['M4',927,997]]},
+    {sys:2, m:[['P2',150,218],['M1',218,480],['M2',480,660],['M7',660,933],['M8',933,997]]},
+    {sys:3, m:[['M9',150,389,'r'],['M2',389,611,'r'],['M3',611,894,'r'],['M12',894,997,'r']]},
+    {sys:4, m:[['M9',150,355,'r'],['M2',355,560,'r'],['M7',560,825,'r'],['M16',825,986,'r']]}
+  ],
+  intro:[[14,18]],
+  img:{w:1080,h:1583,cropTop:130,cropBottom:1480},
+  systems:{1:[176,524],2:[522,871],3:[888,1164],4:[1177,1468]},
+  lyricRows:{1:[320,356,390],2:[668,704,738],3:[1025],4:[1335]}, lyricH:16
+});
+
+// 254장 — WELCOME VOICE, L. Hartsough, 1872
+SONGS[254].data = buildSong({
+  E:{
+    P:"2 Eb4 Eb4:4 G3 Eb3:4|2 G4 - Bb3 -",
+    M1:"6 Bb4 G4 Eb4 Eb3|2 G4 Eb4 Bb3 Eb3|2 F4 D4 Ab3 Eb3|2 Eb4 C4 G3 Eb3",
+    M2:"8 Eb4 Bb3 G3 Eb3|4 Eb4 Bb3 G3 Eb3",
+    M3:"6 F4 D4 Bb3 Bb2|2 Ab4 F4 Bb3 Bb2|2 C5 F4 Bb3 D3|2 Bb4 F4 Bb3 D3",
+    M4:"8 G4 Eb4 Bb3 Eb3",
+    P2:"4 Bb4 Eb4 G3 Eb3",
+    M5:"6 Eb5 G4 Bb3 Eb3|2 D5 Bb4 Eb4 Eb3|2 C5 Ab4 Eb4 Eb3|2 Bb4 G4 Eb4 Eb3",
+    M6:"2 C5 Ab4 Eb4 Eb3|2 Bb4 G4 Eb4 Eb3|4f G4 Eb4 Bb3 Eb3|4 Eb4 Bb3 G3 Eb3",
+    M7:"6 F4 D4 Ab3 Bb2|2 Eb4 C4 G3 C3|2 G4 Eb4 Bb3 Bb2|2 F4 D4 Ab3 Bb2",
+    M8:"12 Eb4 Bb3 G3 Eb3",
+    R1:"6 Eb5 G4 Bb3 Eb3|2 D5 Bb4 Eb4 Eb3|2 C5 Ab4 Eb4 Eb3|2 Bb4 G4 Eb4 Eb3",
+    R2:"12 C5 Ab4 Eb4 Ab2",
+    R3:"6 Bb4 G4 Eb4 Eb3|2 G4 Eb4 Bb3 Eb3|2 F4 D4 Ab3 Eb3|2 Eb4 C4 G3 Eb3",
+    R4:"12 F4 D4 Bb3 Bb2",
+    R5:"6 Bb4 Eb4 G3 Eb3|2 C5 Eb4 Ab3 Eb3|2 G4 Eb4 Bb3 Eb3|2 F4 D4 Ab3 Bb2",
+    R6:"2 Eb4 C4 G3 C3|2 F4 D4 Bb3 Bb2|4f G4 Eb4 Bb3 Eb3|4 Eb4 Bb3 G3 Eb3",
+    R8:"8 Eb4 Bb3 G3 Eb3",
+    A1:"12 Eb4 C4 Ab3 Ab2", A2:"12 Eb4 Bb3 G3 Eb3"
+  },
+  lines:[
+    {sys:1, m:[['P',150,295],['M1',295,516],['M2',516,684],['M3',684,904],['M4',904,1010]]},
+    {sys:2, m:[['P2',150,245],['M5',245,456],['M6',456,670],['M7',670,883],['M8',883,1010]]},
+    {sys:3, m:[['R1',150,432,'r'],['R2',432,589,'r'],['R3',589,853,'r'],['R4',853,1010,'r']]},
+    {sys:4, m:[['R5',150,349,'r'],['R6',349,530,'r'],['M7',530,709,'r'],['R8',709,790,'r']]}
+  ],
+  intro:[[14,18]],
+  amen:[['A1',4,797,903],['A2',4,903,997]],
+  img:{w:1080,h:1556,cropTop:120,cropBottom:1480},
+  systems:{1:[155,577],2:[539,962],3:[934,1228],4:[1190,1471]},
+  lyricRows:{1:[299,336,372,405,441],2:[682,720,755,791,825],3:[1083],4:[1341]}, lyricH:15
 });
 
 /* ---------------- 음 이름 ---------------- */
