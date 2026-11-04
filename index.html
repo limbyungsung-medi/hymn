@@ -200,7 +200,7 @@ input{font:inherit}
 
 <script>
 "use strict";
-const BUILD = "2026-11-04-1";
+const BUILD = "2026-11-04-2";
 document.getElementById('build').textContent = 'build ' + BUILD;
 
 /* =====================================================================
@@ -1070,6 +1070,161 @@ SONGS[482].data = buildSong({
   img:{w:1048,h:1915,cropTop:110,cropBottom:1870},
   systems:{1:[136,418],2:[376,656],3:[620,938],4:[922,1190],5:[1162,1403],6:[1378,1640],7:[1612,1850]},
   lyricRows:{1:[248,282,308],2:[489,517,547],3:[754,783,817],4:[1053],5:[1279],6:[1509],7:[1733]}, lyricH:14
+});
+
+/* ---- 2026-11-04 추가: 495·496·499·505장 ---- */
+Object.assign(SONGS, {
+  495: { title:"익은 곡식 거둘 자가", tonic:"Ab", meter:"4/4", bpm:92, beatUnits:4, countBeats:4, verses:3 },
+  496: { title:"새벽부터 우리", tonic:"Bb", meter:"4/4", bpm:96, beatUnits:4, countBeats:4, verses:3 },
+  499: { title:"흑암에 사는 백성들을 보라", tonic:"Ab", meter:"4/4", bpm:92, beatUnits:4, countBeats:4, verses:4 },
+  505: { title:"온 세상 위하여", tonic:"G", meter:"4/4", bpm:96, beatUnits:4, countBeats:4, verses:3 },
+  484: { title:"내 맘의 주여 소망되소서" }
+});
+
+// 495장 — SEND ME, L. N. Morris(1862-1929)
+SONGS[495].data = buildSong({
+  E:{
+    P:"3 Eb4 C4 Ab3 Ab2|1 Eb4 C4 Ab3 Ab2",
+    M1:"3 Ab4 C4 Eb3 Ab2|1 Ab4 C4 Eb3 Ab2|3 Ab4 C4 Eb3 Ab2|1 Ab4 C4 Eb3 Ab2|3 Ab4 C4 Eb3 Ab2|1 Eb4 C4 Ab3 Ab2|3 C4 Ab3 Eb3 Ab2|1 Db4 Bb3 Eb3 Ab2",
+    M2:"4 Eb4 C4 Ab3 Ab2|4 F4 Db4 Ab3 Ab2|4 Eb4 C4 Ab3 Ab2|3 Bb4 Db4 Ab3 Ab2|1 Ab4 C4 Ab3 Ab2",
+    M3:"4 G4 Eb4 Bb3 Eb3|4 F4 Db4 Ab3 Eb3|4 Eb4 C4 G3 Eb3|4 Db4 Bb3 G3 Eb3",
+    M4:"12 C4 Ab3 Eb3 Ab2",
+    M5:"3 Ab4 C4 Eb3 Ab2|1 Ab4 C4 Eb3 Ab2|3 Ab4 C4 Eb3 Ab2|1 Ab4 C4 Eb3 Ab2|3 Ab4 C4 Eb3 Ab2|1 C5 Eb4 Ab3 Ab2|3 Bb4 Db4 G3 Bb2|1 Ab4 Eb4 Ab3 C3",
+    M6:"4 F4 Db4 Ab3 Db3|4 Bb4 D4 Ab3 Bb2|4 Bb4 Db4 Ab3 Bb2|3 Bb4 Db4 F3 Bb2|1 Ab4 F4 Bb3 Bb2",
+    M7:"4 G4 Eb4 Bb3 Eb3|4 Db5 F4 G3 Eb3|4 C5 Eb4 Ab3 Eb3|4 Bb4 Db4 G3 Eb3",
+    M8:"12 Ab4 C4 Eb3 Ab2",
+    PR:"3 C5 Ab4 - -|1 Db5 Bb4 - -",
+    M9:"12 Eb5 C5 - -|- - - - -",
+    M10:"4 C5 Ab4 Ab3 Ab2|4 - F4 Ab3 Ab2|4 - Eb4 Ab3 Ab2|3 Db5 Bb4 - -|1 C5 Ab4 - -",
+    M11:"12 Bb4 G4 - -|- - - - -",
+    M12:"4 C5 Ab4 Ab3 Ab2|4 - F4 Ab3 Ab2|4 - Eb4 Ab3 Ab2",
+    P4:"3 Ab4 C4 Eb3 Ab2|1 Bb4 Db4 Eb3 Ab2",
+    M13:"3 C5 Eb4 Ab3 Ab2|1 C5 Eb4 Ab3 Ab2|3 C5 Eb4 Ab3 Ab2|1 C5 Eb4 Ab3 Ab2|3 Db5 F4 Ab3 Ab2|1 C5 Eb4 Ab3 Ab2|3 Ab4 C4 Ab3 Ab2|1 Ab4 Eb4 C4 Ab2",
+    M14:"3 Ab4 F4 Db4 Db3|1 Ab4 F4 Db4 Db3|3 Ab4 F4 Db4 Db3|1 Ab4 F4 Db4 Db3|3 Ab4 F4 Db4 Db3|1 Ab4 F4 Db4 Db3|3 G4 Eb4 Ab3 Db3|1 F4 Db4 Ab3 Db3",
+    M15:"3 Eb4 C4 Ab3 Eb3|1 C5 Eb4 Ab3 Eb3|3 C5 Eb4 Ab3 Eb3|1 Db5 F4 Ab3 Eb3|4 C5 Ab4 Eb4 Eb3|4 Bb4 G4 Db4 Eb3",
+    M16:"12 Ab4 Eb4 C4 Ab2"
+  },
+  lines:[
+    {sys:1, m:[['P',184,281],['M1',281,574],['M2',574,762],['M3',762,917],['M4',917,999]]},
+    {sys:2, m:[['P',150,257],['M5',257,546],['M6',546,749],['M7',749,916],['M8',916,999]]},
+    {sys:3, m:[['PR',150,242,'r'],['M9',242,464,'r'],['M10',464,650,'r'],['M11',650,871,'r'],['M12',871,999,'r']]},
+    {sys:4, m:[['P4',150,242,'r'],['M13',242,508,'r'],['M14',508,760,'r'],['M15',760,945,'r'],['M16',945,988,'r']]}
+  ],
+  intro:[[15,20]],
+  img:{w:1080,h:1589,cropTop:120,cropBottom:1470},
+  systems:{1:[163,507],2:[499,843],3:[845,1132],4:[1171,1448]},
+  lyricRows:{1:[305,347,387],2:[635,677,717],3:[995],4:[1319]}, lyricH:18
+});
+// 495 후렴 남성부(보내소서 보내 주소서) 따로 넣기
+(function(){
+  const D=SONGS[495].data, seg=k=>D.verse.find(s=>s.sys===3 && s.ev===k);
+  const set=(old,ev)=>{ D.verse.forEach(s=>{ if(s.ev===old) s.ev=ev; }); };
+  set("12 Eb5 C5 - -|- - - - -","4 Eb5:12 C5 - -|3 - C5 Ab3 Ab2|1 - C5 Ab3 Ab2|3 - Ab4 Ab3 Ab2|1 - Ab4 Ab3 Ab2|3 Db5 F4 Ab3 Ab2|1 - G4 Ab3 Ab2");
+  set("12 Bb4 G4 - -|- - - - -","4 Bb4:12 G4 - -|3 - Eb4 Eb4 Eb3|1 - Eb4 Eb4 Eb3|3 - Eb4 Eb4 Eb3|1 - Eb4 Db4 Eb3|3 Db5 G4 Db4 Eb3|1 - G4 Bb3 Eb3");
+})();
+
+// 496장 — HARVEST, G. A. Minor(1845-1904)
+SONGS[496].data = buildSong({
+  E:{
+    M1:"2 F4 D4 Bb3 Bb2|2 F4 D4 Bb3 Bb2|3 F4 D4 Bb3 Bb2|1 G4 Eb4 Bb3 Bb2|4 F4 D4 Bb3 Bb2|4 D4 Bb3 F3 Bb2",
+    M2:"2 Bb4 D4 F3 Bb2|2 Bb4 D4 F3 Bb2|3 Bb4 D4 F3 Bb2|1 C5 D4 F3 Bb2|4 Bb4 Eb4 G3 Eb3|4 G4 Eb4 Bb3 Eb3",
+    M4:"2 D4 Bb3 F3 Bb2|2 D4 Bb3 F3 Bb2|2 C4 A3 F3 F2|2 B3 G#3 F3 F2|8 C4 A3 F3 F2",
+    M5:"2 D4 Bb3 F3 Bb2|2 F4 D4 Bb3 Bb2|3 F4 D4 Bb3 Bb2|1 G4 Eb4 Bb3 Bb2|4 F4 D4 Bb3 Bb2|4 D4 Bb3 F3 Bb2",
+    M7:"2 F4 D4 Bb3 Bb2|2 F4 D4 Bb3 Bb2|2 Bb4 D4 F3 Bb2|2 C5 Eb4 F3 Bb2|4 D5 F4 Bb3 Bb2|4 Bb4 F4 Bb3 D3",
+    M8:"2 C5 Eb4 A3 F3|2 Bb4 D4 A3 F3|3 D5 F4 A3 F3|1 C5 Eb4 F3 F3|8 Bb4 D4 F3 Bb2",
+    R1:"2 D4 Bb3 F3 Bb2|2 F4 D4 Bb3 Bb2|3 F4 D4 Bb3 Bb2|1 G4 Eb4 Bb3 Bb2|8 F4 D4 Bb3 Bb2",
+    R2:"2 G4 Eb4 Bb3 Eb3|2 Bb4 G4 Bb3 Eb3|3 Bb4 G4 Bb3 Eb3|1 G4 Eb4 Bb3 Eb3|8 F4 D4 Bb3 Bb2",
+    R3:"2 F4 D4 Bb3 Bb2|2 F4 D4 Bb3 Bb2|2 Bb4 D4 F3 Bb2|2 C5 Eb4 F3 Bb2|4 D5 F4 Bb3 Bb2|4 Bb4 D4 F3 Bb2",
+    R4:"2 D5 F4 Bb3 Bb2|2 D5 F4 Bb3 D3|3 C5 F4 A3 F3|1 Bb4 E4 G3 C3|8 A4 F4 A3 F3",
+    A1:"8 Bb4 Eb4 G3 Eb3", A2:"8 Bb4 D4 F3 Bb2"
+  },
+  lines:[
+    {sys:1, m:[['M1',151,352],['M2',352,565],['M1',565,777],['M4',777,994]]},
+    {sys:2, m:[['M5',140,347],['M2',347,571],['M7',571,791],['M8',791,994]]},
+    {sys:3, m:[['R1',140,335,'r'],['R2',335,545,'r'],['R3',545,775,'r'],['R4',775,994,'r']]},
+    {sys:4, m:[['R1',140,309,'r'],['R2',309,489,'r'],['M7',489,695,'r'],['M8',695,878,'r']]}
+  ],
+  intro:[[12,16]],
+  amen:[['A1',4,884,933],['A2',4,933,982]],
+  img:{w:1080,h:1585,cropTop:130,cropBottom:1470},
+  systems:{1:[177,535],2:[524,876],3:[893,1179],4:[1169,1457]},
+  lyricRows:{1:[322,360,400],2:[667,708,748],3:[1042],4:[1320]}, lyricH:18
+});
+
+// 499장 — GO YE, J. McGranahan, 1886
+SONGS[499].data = buildSong({
+  E:{
+    M1:"4 C5 Eb4 Ab3 Ab2|3 Ab4 F4 Ab3 Db3|1 F4 Db4 Ab3 Db3|6 Eb4 C4 Ab3 Ab2|2 C4 Ab3 Eb3 Ab2",
+    M2:"2 Eb4 Eb4 Eb3 Eb3|2 F4 F4 F3 F3|2 G4 G4 G3 G3|2 Ab4 Ab4 Ab3 Ab3|4 C5 Eb4 Ab3 Eb3|4 Bb4 Eb4 G3 Eb3",
+    M3:"4 Bb4 Eb4 G3 Eb3|3 Bb4 Eb4 G3 Eb3|1 A4 Eb4 F#3 Eb3|6 Bb4 Eb4 G3 Eb3|2 Bb4 Eb4 G3 Eb3",
+    M4:"2 C5 Eb4 Ab3 Ab2|2 Ab4 Eb4 C4 Ab2|3 Ab4 D4 Bb3 Bb2|1 F4 D4 Ab3 Bb2|8 Eb4 Eb4 G3 Eb3",
+    M6:"2 Eb4 Eb4 Eb3 Eb3|2 F4 F4 F3 F3|2 G4 G4 G3 G3|2 Ab4 Ab4 Ab3 Ab3|4 C5 Ab4 Eb4 Eb3|4 Bb4 G4 Eb4 Eb3",
+    M7:"4 Db5 G4 Eb4 Eb3|3 C5 G4 Eb4 C3|1 Bb4 G4 Eb4 Eb3|2 C5 Ab4 Eb4 Ab3|2 Ab4 Eb4 C4 Ab3|2 Ab4 F4 C4 Db3|2 F4 Db4 Ab3 Db3",
+    M8:"4 Eb4 C4 Ab3 Ab2|4 G4 Db4 Bb3 Eb3|8 Ab4 C4 Ab3 Ab2",
+    M9:"8 Eb4 C4 Ab3 Ab2|4 Ab4 C4 Eb3 Ab2|4 G4 Eb4 Ab3 C3",
+    M10:"3 G4 Eb4 Ab3 Db3|1 F4 Db4 Ab3 Db3|3 F4 Db4 Ab3 Db3|1 F4 Db4 Ab3 Db3|8 F4 Db4 Ab3 Db3",
+    M11:"8 F4 D4 Bb3 Bb2|4 Bb4 Db4 F3 Bb2|4 Ab4 F4 F3 D3",
+    M12:"3 Ab4 F4 Bb3 Eb3|1 G4 Eb4 Bb3 Eb3|3 G4 Eb4 Bb3 Eb3|1 G4 Eb4 Bb3 Eb3|8 G4 Eb4 Bb3 Eb3",
+    M13:"2 Eb4 Eb4 Eb3 Eb3|2 Eb4 Eb4 Eb3 Eb3|2 F4 F4 F3 F3|2 G4 G4 G3 G3|3 Ab4 Ab4 Ab3 Ab3|1 Ab4 Ab4 Ab3 Ab3|2 Ab4 Ab4 Ab3 Ab3|2 C5 Ab4 C4 Ab3",
+    M14:"4 C5 Ab4 Eb4 Eb3|4 Bb4 G4 Eb4 Eb3|4 Db5 F4 Db4 F3|2 C5 Eb4 Eb4 Ab3|2 Eb5 Gb4 Ab3 C3",
+    M15:"4 Eb5 Gb4 Ab3 Db3|2 Db5 F4 Ab3 Db3|2 Bb4 Db4 Ab3 Db3|4 Ab4 C4 Ab3 Eb3|4 G4 Eb4 Bb3 Eb3",
+    M16:"8 Bb4 Db4 G3 Eb3|8 Ab4 C4 Ab3 Ab2"
+  },
+  lines:[
+    {sys:1, m:[['M1',150,388],['M2',388,598],['M3',598,797],['M4',797,1003]]},
+    {sys:2, m:[['M1',150,381],['M6',381,606],['M7',606,855],['M8',855,1003]]},
+    {sys:3, m:[['M9',150,353,'r'],['M10',353,585,'r'],['M11',585,772,'r'],['M12',772,1003,'r']]},
+    {sys:4, m:[['M13',150,453,'r'],['M14',453,660,'r'],['M15',660,870,'r'],['M16',870,992,'r']]}
+  ],
+  intro:[[12,16]],
+  img:{w:1080,h:1603,cropTop:130,cropBottom:1500},
+  systems:{1:[177,570],2:[562,960],3:[964,1235],4:[1213,1494]},
+  lyricRows:{1:[320,358,398,437],2:[708,747,787,822],3:[1106],4:[1359]}, lyricH:17
+});
+
+// 505장 — CHRIST FOR THE WORLD, B. B. McKinney, 1938
+SONGS[505].data = buildSong({
+  E:{
+    P:"4 D4 D4 D3 D3", P2:"4 B4 G4 D4 G3", P3:"4 D4 C4 F#3 D3", P4:"4 E4 E4 C4 C3",
+    M1:"6 G4 D4 B3 G3|2 F#4 D4 A3 D3|4 G4 D4 G3 B2|4 A4 D4 F#3 D3",
+    M2:"12 B4 D4 G3 G3|4 B4 F4 G3 G3",
+    M3:"6 C5 E4 G3 C3|2 C5 E4 G3 C3|4 G4 E4 G3 C3|4 A4 Eb4 G3 C3",
+    M4:"12 B4 D4 G3 G2",
+    M5:"4 B4 G4 D4 D3|4 A4 F#4 D4 D3|6 A4 F#4 D4 D3|2 B4 G4 D4 D3",
+    M6:"4 A4 D4 C4 G3|4 G4 D4 B3 G3|6 G4 D4 B3 G3|2 F#4 D#4 A3 B2",
+    M7:"4 E4 E4 G3 C3|4 G4 D4 G3 B2|4 B4 C#4 G3 A2|4 A4 C4 G3 A2",
+    M8:"12 A4 D4 F#3 D3",
+    M9:"6 G4 B3 G3 D3|2 F#4 D4 A3 C3|4 G4 D4 G3 B2|4 A4 D4 F#3 A2",
+    M10:"12 B4 D4 G3 G2|4 B4 D4 G3 G3",
+    M11:"6 D5 G4 B3 G3|2 D5 G4 B3 G3|4 B4 D4 G3 G3|4 D5 F4 G3 B2",
+    M12:"12 C5 E4 G3 C3",
+    M13:"6 G4 D4 B3 D3|2 F#4 D4 A3 C3|4 G4 D4 G3 B2|4 A4 D4 F#3 A2",
+    M14:"4 B4 D4 G3 G2|4 C5 D4 F#3 A2|4f D5 D4 G3 B2|4 C5 E4 G3 C3",
+    M15:"6 B4 D4 G3 D3|2 G4 D4 B3 D3|4 F#4 D4 A3 D3|4 A4 D4 C4 D3",
+    M16:"12 G4 B3 B3 G2",
+    R0:"3 D4 B3 G3 G2|1 G4 B3 G3 G2",
+    R1:"4 B4:12 D4:12 G3 G2|4 - - G3 G2|4 - - G3 G2|3 A4 C4 F#3 D3|1 B4 D4 F#3 D3",
+    R2:"4 G4:12 B3:12 G3 G2|4 - - D3 G2|4 - - D3 G2|3 F#4 D4 A3 D3|1 G4 C#4 A3 D3",
+    R3:"4 A4 D4 F#3 D3|4 A4 C#4 G3 E3|4 A4 D4 A3 F#3|3 D5 F#4 A3 D3:4|1 C5 - C4 -",
+    R4:"4 B4:12 G4:12 D4:12 G3|4 - - - G3|4 - - - G3",
+    R5p:"3 B4 D4 G3 G3|1 C5 D4 A3 G3",
+    R5:"4 D5 G4 B3 G3|4 D5 G4 B3 G3|6 D5 G4 B3 G3|2 B4 G4 D4 G2",
+    R6:"4 A4 F#4 D4 A2|4 G4 F4 D4 B2|4f C5 E4 C4 C3|4 E5 G4 A3 C#3",
+    R7:"6 D5 G4 B3 D3|2 D5 G4 B3 D3|4 D5 F#4 A3 D3|4 F#4 D4 C4 D3",
+    R8:"12 G4 D4 B3 G2"
+  },
+  lines:[
+    {sys:1, m:[['P',187,262],['M1',262,478],['M2',478,641],['M3',641,858],['M4',858,969]]},
+    {sys:2, m:[['P2',150,236],['M5',236,443],['M6',443,651],['M7',651,862],['M8',862,969]]},
+    {sys:3, m:[['P3',150,240],['M9',240,463],['M10',463,631],['M11',631,854],['M12',854,969]]},
+    {sys:4, m:[['P4',150,236],['M13',236,444],['M14',444,654],['M15',654,862],['M16',862,969]]},
+    {sys:5, m:[['R0',150,255,'r'],['R1',255,447,'r'],['R2',447,645,'r'],['R3',645,840,'r'],['R4',840,968,'r']]},
+    {sys:6, m:[['R5p',150,264,'r'],['R5',264,463,'r'],['R6',463,667,'r'],['R7',667,866,'r'],['R8',866,958,'r']]}
+  ],
+  intro:[[25,30]],
+  img:{w:1079,h:1915,cropTop:150,cropBottom:1880},
+  systems:{1:[184,508],2:[489,813],3:[795,1119],4:[1096,1414],5:[1400,1638],6:[1637,1878]},
+  lyricRows:{1:[314,352,389],2:[617,656,694],3:[928,965,1003],4:[1221,1258,1296],5:[1518],6:[1755]}, lyricH:17
 });
 
 /* ---------------- 음 이름 ---------------- */
