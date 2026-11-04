@@ -1,18 +1,23 @@
-/* 말씀암송 오프라인 지원 */
-const CACHE="amsong-v9";
-self.addEventListener("install",e=>{self.skipWaiting();e.waitUntil(caches.open(CACHE).then(c=>c.addAll(["./"]).catch(()=>{})))});
-self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
-self.addEventListener("fetch",e=>{
-  const req=e.request;if(req.method!=="GET")return;
-  const url=new URL(req.url);
-  if(req.mode==="navigate"||(url.origin===location.origin&&/\/(index\.html)?$/.test(url.pathname))){
-    // 페이지: 인터넷 먼저, 안 되면 저장본
-    e.respondWith(fetch(req,{cache:"no-store"}).then(res=>{if(res.ok){const cp=res.clone();caches.open(CACHE).then(c=>c.put("./",cp))}return res})
-      .catch(()=>caches.match("./").then(r=>r||caches.match(req,{ignoreSearch:true}))));
-    return;
-  }
-  if(["cdn.jsdelivr.net","cdnjs.cloudflare.com","fonts.googleapis.com","fonts.gstatic.com"].includes(url.hostname)){
-    // 글꼴: 저장본 먼저
-    e.respondWith(caches.match(req).then(r=>r||fetch(req).then(res=>{if(res.ok||res.type==="opaque"){const cp=res.clone();caches.open(CACHE).then(c=>c.put(req,cp))}return res})));
-  }
+// 말씀나눔 찬송가 — 앱 설치와 오프라인 사용을 위한 서비스워커
+// 화면(index.html)은 항상 인터넷에서 새로 받고, 안 될 때만 저장본을 씁니다.
+const CACHE = 'hymn-app-v1';
+self.addEventListener('install', e => { self.skipWaiting(); });
+self.addEventListener('activate', e => { e.waitUntil(self.clients.claim()); });
+self.addEventListener('fetch', e => {
+  const req = e.request;
+  if (req.method !== 'GET') return;
+  const url = new URL(req.url);
+  if (url.origin !== location.origin) return; // 피아노 소리 등 외부 파일은 앱이 따로 저장함
+  e.respondWith((async () => {
+    try {
+      const res = await fetch(req, { cache: 'no-store' });
+      if (res && res.ok) { const c = await caches.open(CACHE); c.put(req, res.clone()); }
+      return res;
+    } catch (err) {
+      const hit = await caches.match(req, { ignoreSearch: true });
+      if (hit) return hit;
+      if (req.mode === 'navigate') { const idx = await caches.match('./') || await caches.match('index.html'); if (idx) return idx; }
+      throw err;
+    }
+  })());
 });
