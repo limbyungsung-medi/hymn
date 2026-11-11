@@ -200,7 +200,7 @@ input{font:inherit}
 
 <script>
 "use strict";
-const BUILD = "2026-11-05-1";
+const BUILD = "2026-11-11-1";
 document.getElementById('build').textContent = 'build ' + BUILD;
 
 /* =====================================================================
@@ -1516,6 +1516,228 @@ SONGS[254].data = buildSong({
   img:{w:1080,h:1556,cropTop:120,cropBottom:1480},
   systems:{1:[155,577],2:[539,962],3:[934,1228],4:[1190,1471]},
   lyricRows:{1:[299,336,372,405,441],2:[682,720,755,791,825],3:[1083],4:[1341]}, lyricH:15
+});
+
+Object.assign(SONGS, {
+  22:  { title:"만유의 주 앞에", tonic:"D", meter:"4/4", bpm:104, beatUnits:4, countBeats:4, verses:4 },
+  36:  { title:"주 예수 이름 높이어", tonic:"G", meter:"4/4", bpm:104, beatUnits:4, countBeats:4, verses:4 },
+  200: { title:"달고 오묘한 그 말씀", tonic:"F", meter:"6/8", bpm:60, beatUnits:6, countBeats:2, verses:3 },
+  570: { title:"주는 나를 기르시는 목자" }
+});
+SONGS[22].data = buildSong({
+  E:{
+    P:"4 D4 D4 F#3 D3",
+    M1:"4 F#4 D4 A3 D3|4 D4 D4 F#3 D3|4 A4 E4 A3 C#3|4 F#4 F#4 A3 D3",
+    M2:"12 D5 F#4 D4 B3|4 C#5 F#4 D4 A3",
+    M3:"4 B4 G4 D4 G3|4 A4 D4 A3 F#3|4 G4 C#4 A3 E3|4 F#4 D4 A3 D3",
+    M4:"12 E4 C#4 A3 A2|4 E4 C#4 A3 A2",
+    M5:"4 F#4 D4 A3 D3|4 D4 D4 F#3 D3|4 B4 F#4 D4 B2|4 A4 F#4 D4 B2",
+    M6:"4 G#4 E4 B3 E3|4 E4 E4 G#3 D3|4 E5 E4 A3 C#3|4 D5 F#4 A3 D3",
+    M7:"8 C#5 E4:12 A3 E3|4 B4:8 - G#3:8 E3:8|4 - D4 - -",
+    M8:"12 A4 C#4 A3 A2",
+    RP:"4 A4 D4 F#3 D3",
+    R1:"8 B4 D4 G3 G3|8 C#5 G4 A3 E3",
+    R2:"12 D5 F#4 A3 D3|4 D4 D4 F#3 D3",
+    R3:"4 E4 A3 A3 C#3|4 F#4 D4 A3 D3|4 G4 G4 D4 B3|4 A4 F#4 D4 A3",
+    R4:"4 B4 D4 B3 G3|4 C#5 F#4 A3 F#3|4 D5 F#4 B3 B3|4 E5 E4 B3 G3",
+    R5:"8 D5 F#4 A3 A3|4 C#5:8 E4 A3:8 A2:8|4 - G4 - -",
+    R6:"12 D5 F#4 A3 D3",
+    A1:"8 D5 G4 B3 G3", A2:"8 D5 F#4 A3 D3"
+  },
+  lines:[
+    {sys:1, m:[['P',150,207],['M1',207,330],['M2',330,403],['M3',403,527],['M4',527,598],['M5',598,723],['M6',723,859],['M7',859,950],['M8',950,992]]},
+    {sys:2, m:[['RP',140,193,'r'],['R1',193,300,'r'],['R2',300,405,'r'],['R3',405,545,'r'],['R4',545,685,'r'],['R5',685,810,'r'],['R6',810,882,'r']]}
+  ],
+  intro:[[0,5],[12,16]],
+  amen:[['A1',2,882,935],['A2',2,935,983]],
+  img:{w:1080,h:830,cropTop:150,cropBottom:790},
+  systems:{1:[168,526],2:[501,759]},
+  lyricRows:{1:[298,331,367,402],2:[634]}, lyricH:16
+});
+SONGS[36].data = buildSong({
+  E:{
+    P:"4 D4 D4 D3 D3",
+    M1:"4 G4 D4 G3 B2|4 G4 D4 B3 G2|4 B4 G4 D4 G3|4 B4 G4 D4 G3",
+    M2:"4 A4 F#4 D4 D3|4 G4 E4 B3 E3|4 A4 F#4 D4 D3|4 B4 G4 D4 B2",
+    M3:"4 A4 F#4 C4 D3|4 G4 G4 B3 E3|4 B4 G4 D4 D3|4 A4 F#4 C4 D3",
+    M4:"12 G4 G4 B3 G2",
+    P2:"4 A4 D4 A3 D3",
+    M5:"4 B4 G4 B3 G3|4 A4 D4 A3 D3|4 G4 B3 G3 B2|4 B4 G4 B3 G3",
+    M6:"2 D5 B4 D4 B3|2 C5 A4 C4 A3|2 B4 G4 B3 G3|2 A4 F#4 A3 F#3|4 B4 G4 B3 G3|4 D5 F#4 A3 D3",
+    M7:"8 D5 G4 B3 G3|8 D5 A4 A3 F#3",
+    M8:"8 E5 G4 B3 E3|4 D5 F#4 A3:8 A2:8|4 C#5 E4 - -",
+    M9:"12 D5 F#4 A3 D3",
+    P3:"4 B4 D4 G3 G3",
+    M10:"4 D5 D4 B3 G3|4 B4 D4 G3 G2|4 G4 D4 G3 B2|4 B4 G4 D4 G2",
+    M11:"2 A4 F#4 D4:4 D3:4|2 G4 E4 - -|2 A4 F#4 C4 D3:4|2 B4 G4 B3 -|4 A4 F#4 C4 D3|4 G4 G4 B3 E3",
+    M12:"8 D5 G4 D4 B2|8 C5 G4 E4 C3",
+    M13:"6 B4 G4:12 D4:12 D3:12|2 C5 - - -|4 A4 - - -|4 A4 F#4 C4 D3",
+    M14:"12 G4 G4 B3 G2",
+    A1:"8 G4 E4 C4 C3", A2:"8 G4 D4 B3 G2"
+  },
+  lines:[
+    {sys:1, m:[['P',140,205],['M1',205,434],['M2',434,657],['M3',657,879],['M4',879,993]]},
+    {sys:2, m:[['P2',135,181],['M5',181,369],['M6',369,587],['M7',587,732],['M8',732,898],['M9',898,995]]},
+    {sys:3, m:[['P3',135,176],['M10',176,333],['M11',333,516],['M12',516,636],['M13',636,793],['M14',793,870]]}
+  ],
+  intro:[[11,17]],
+  amen:[['A1',3,870,928],['A2',3,928,986]],
+  img:{w:1080,h:1608,cropTop:170,cropBottom:1540},
+  systems:{1:[184,597],2:[646,1060],3:[1101,1522]},
+  lyricRows:{1:[339,376,415,451],2:[801,839,874,911],3:[1252,1290,1326,1363]}, lyricH:17
+});
+SONGS[200].data = buildSong({
+  E:{
+    M1:"4 A4 C4 F3 F3|2 A4 C4 F3 F3|2 A4 C4 F3 F3|2 Bb4 D4 F3 F3|2 A4 C4 F3 F3",
+    M2:"4 A4 C4 F3 C3|2 G4 Bb3 E3 C3|6 G4 Bb3 E3 C3",
+    M3:"2 C4 Bb3 G3 C3|2 G4 Bb3 E3 C3|2 G4 Bb3 E3 C3|4 A4 C4 E3 C3|2 G4 Bb3 E3 C3",
+    M4:"6 F4 A3:12 F3:12 F3:12|6 C4 - - -",
+    M8:"12 F4 A3 F3 F2",
+    M9:"4 A4 F4 F3 F3|2 A4 F4 F3 F3|2 A4 F4 C4 F3:4|2 Bb4 G4 Bb3 -|2 C5 F4 A3 F3",
+    M10:"6 D5 F4 Bb3 Bb2|6 C5 F4 A3 F3",
+    R1:"2 C5 A4 C4 E3|2 Bb4 G4 C4 E3|2 Bb4 G4 C4 E3|6 Bb4 G4 C4 E3",
+    R2:"2 Bb4 G4 C4 F3|2 A4 F4 C4 F3|2 A4 F4 C4 F3|6 A4 F4 C4 F3",
+    R3:"2 A4 D4 Bb3 Bb2|2 G4 D4 Bb3 Bb2|2 F4 D4 A3 D3|4 G4 E4 C4 C3|2 E4 C4 Bb3 C3",
+    R4:"4 F4 C4:6 A3:12 F3:12|2 A4 - - -|6 C5 F4 - -",
+    R8:"12 F4 C4 A3 F3",
+    A1:"6 F4 D4 Bb3 Bb2", A2:"6 F4 C4 A3 F3"
+  },
+  lines:[
+    {sys:1, m:[['M1',150,398],['M2',398,589],['M3',589,828],['M4',828,995]]},
+    {sys:2, m:[['M1',150,392],['M2',392,599],['M3',599,856],['M8',856,995]]},
+    {sys:3, m:[['M9',150,387],['M10',387,565],['M9',565,817],['M10',817,995]]},
+    {sys:4, m:[['R1',150,347,'r'],['R2',347,562,'r'],['R3',562,801,'r'],['R4',801,995,'r']]},
+    {sys:5, m:[['R1',150,323,'r'],['R2',323,515,'r'],['R3',515,728,'r'],['R8',728,838,'r']]}
+  ],
+  intro:[[0,8]],
+  amen:[['A1',5,838,900],['A2',5,900,984]],
+  img:{w:1080,h:1568,cropTop:150,cropBottom:1530},
+  systems:{1:[168,496],2:[452,780],3:[734,1062],4:[1050,1306],5:[1259,1515]},
+  lyricRows:{1:[309,342,375],2:[595,628,665],3:[866,898,932],4:[1182],5:[1389]}, lyricH:16
+});
+Object.assign(SONGS, { 258: { title:"샘물과 같은 보혈은", tonic:"Bb", meter:"4/4", bpm:84, beatUnits:4, countBeats:4, verses:5 } });
+SONGS[258].data = buildSong({
+  E:{
+    P:"2 Bb3 Bb3 D3 Bb2:4|2 D4 D4 F3 -",
+    M1:"6 F4 D4 Bb3 Bb2|2 G4 Eb4 Bb3 Bb2|4 F4 D4 Bb3 Bb2|4 Bb4 F4 F3 D3",
+    M2:"6 Bb4 Eb4 G3 Eb3|2 G4 Eb4 Bb3 Eb3|4 F4 D4 Bb3 Bb2|2 Bb3 Bb3 D3 Bb2:4|2 D4 D4 F3 -",
+    M3:"6 F4 D4 Bb3 Bb2|2 F4 D4 Bb3 Bb2|2 G4 Eb4 Bb3:4 Bb2:4|2 F4 D4 - -|2 D4 Bb3 F3:4 Bb2|2 Bb3 Bb3 - D3",
+    M4:"12 C4 A3 F3 F3",
+    M6:"6 Bb4 Eb4 G3 Eb3|2 G4 Eb4 Bb3 Eb3|4 F4 D4 Bb3 Bb2|2 Bb4 D4 Bb3:4 Bb2:4|2 C5 Eb4 - -",
+    M7:"6 D5 F4 Bb3 Bb2|2 Bb4 D4 Bb3 Bb2|4 C5 Eb4 A3 F3|4 D5 F4 F3 F3",
+    M8:"12 Bb4 D4 F3 Bb2",
+    P3:"2 Bb4 D4 Bb3:4 -|2 C5 Eb4 - -",
+    M9:"6 D5 F4 Bb3 Bb3|2 Bb4 D4 Bb3 Bb3|4 C5 Eb4 A3 F3|4 D5 F4 Bb3 Bb2",
+    M10:"6 Bb4 G4 Bb3:12 Eb3:12|2 G4 Eb4 - -|4 Bb4 G4 - -|4 G4 Eb4 Bb3 Eb3",
+    A1:"8 Bb4 Eb4 G3 Eb3", A2:"8 Bb4 D4 F3 Bb2"
+  },
+  lines:[
+    {sys:1, m:[['P',140,187],['M1',187,390],['M2',390,612],['M3',612,851],['M4',851,933]]},
+    {sys:2, m:[['P',140,171],['M1',171,389],['M6',389,624],['M7',624,842],['M8',842,933]]},
+    {sys:3, m:[['P3',140,169],['M9',169,386],['M10',386,598],['M3',598,845],['M4',845,933]]},
+    {sys:4, m:[['P',140,162],['M1',162,343],['M6',343,539],['M7',539,721],['M8',721,803]]}
+  ],
+  intro:[[0,10]],
+  amen:[['A1',4,803,862],['A2',4,862,921]],
+  img:{w:943,h:1455,cropTop:100,cropBottom:1440},
+  systems:{1:[115,474],2:[432,790],3:[743,1116],4:[1070,1428]},
+  lyricRows:{1:[247,274,301,330,358],2:[562,591,620,648,676],3:[874,903,931,960,988],4:[1200,1229,1258,1286,1314]}, lyricH:14
+});
+Object.assign(SONGS, { 283: { title:"나 속죄함을 받은 후", tonic:"F", meter:"4/4", bpm:92, beatUnits:4, countBeats:4, verses:4 } });
+SONGS[283].data = buildSong({
+  E:{
+    P:"4 C4 C4 A3 F3",
+    M1:"6 F4 C4 A3 F3|2 G4 C4 Bb3 F3|2 A4 F4 C4:4 F3:4|2 Bb4 G4 - -|2 C5 A4 C4:4 F3:4|2 D5 Bb4 - -",
+    M2:"4 C5 A4 C4 C3|4 Bb4 G4 C4 C3|4 A4 F4 C4 F3|4 F4 F4 A3 F3",
+    M3:"6 A4 F4 C4 F3|2 A4 F4 C4 F3|4 G4 C4 Bb3 F3|4 F4 C4 A3 F3",
+    M4:"4 C5:12 E4 G3 C3:12|4 - F4 A3 -|4f - G4 Bb3 -",
+    P2:"4 C4 C4 Bb3 C3",
+    M6:"4 C5 A4 C4 C3|4 Bb4 G4 C4 C3|4 A4 F4 C4 F3|4 G4 D4 Bb3 Bb2",
+    M7:"6 F4 C4 A3 C3|2 F4 C4 A3 C3|4 G4 C4 Bb3 C3|4 E4 C4 Bb3 C3",
+    M8:"12 F4 C4 A3 F3",
+    RP:"2 A4 F4 C4:4 F3:4|2 Bb4 G4 - -",
+    R1:"2 C5:10 A4 C4 F3|2 - A4 C4 F3|2 - F4 A3 F3|2 - G4 Bb3 F3|2 - A4:4 C4:4 F3:4|2 C5 - - -|2 A4 F4:4 C4 F3:4|2 F4 - A3 -",
+    R2:"2 C5:12 E4 G3 C3|2 - E4 G3 C3|2 - G4 Bb3 C3|2 - F4 A3 C3|4 - E4 G3 C3|2 G4 E4 C4:4 C3:4|2 A4 F4 - -",
+    R3:"2 Bb4 G4 C4 C3|2 Bb4 F4 C4 C3|2 Bb4 E4 C4 C3|2 Bb4 D4 C4 C3|4 Bb4 C4 C4 C3|2 D4 C4 Bb3 C3|2 E4 C4 Bb3 C3",
+    R4:"2 F4 C4 A3 F3|2 F4 C4 A3 F3|2 G4 C4 Bb3 F3|2 G4 C4 Bb3 F3|4 A4 F4 C4 F3|2 A4 F4 C4:4 F3:4|2 Bb4 G4 - -",
+    R7:"2 C5 E4 C4 C3|2 Bb4 D4 C4 C3|2 A4 C4 C4 C3|2 G4 C4 Bb3 C3|4 F4 C4 A3 C3|2 E4:4 C4:4 G3 C3:4|2 - - Bb3 -",
+    R8:"12 F4 C4 A3 F2"
+  },
+  lines:[
+    {sys:1, m:[['P',140,235],['M1',235,460],['M2',460,656],['M3',656,850],['M4',850,1002]]},
+    {sys:2, m:[['P2',140,214],['M1',214,462],['M6',462,678],['M7',678,891],['M8',891,1002]]},
+    {sys:3, m:[['RP',140,250,'r'],['R1',250,638,'r'],['R2',638,1002,'r']]},
+    {sys:4, m:[['R3',140,427,'r'],['R4',427,704,'r'],['R1',704,1002,'r']]},
+    {sys:5, m:[['R2',140,499,'r'],['R7',499,857,'r'],['R8',857,990,'r']]}
+  ],
+  intro:[[0,10]],
+  img:{w:1080,h:1591,cropTop:120,cropBottom:1490},
+  systems:{1:[142,483],2:[437,777],3:[748,1003],4:[988,1243],5:[1223,1473]},
+  lyricRows:{1:[268,306,337,364],2:[567,600,631,661],3:[880],4:[1123],5:[1353]}, lyricH:16
+});
+Object.assign(SONGS, { 302: { title:"내 주 하나님 넓고 큰 은혜는", tonic:"D", meter:"4/4", bpm:84, beatUnits:4, countBeats:4, verses:4 } });
+SONGS[302].data = buildSong({
+  E:{
+    P:"4 D4 D4 F#3 D3",
+    M1:"4 D4 D4 F#3 D3|3 F#4 D4 A3 D3|1 G4 D4 A3 D3|4 A4 F#4 D4 D3|2 A4 F#4 D4 D3|2 A4 F#4 D4 D3",
+    M2:"4 B4 G4 D4 G3|3 D5 G4 B3 G3|1 B4 G4 D4 G3|6 A4 F#4 D4 D3|2 A4 F#4 D4 D3",
+    M3:"4 B4 G4 D4 G3|3 B4 G4 D4 G3|1 B4 G4 D4 G3|2 A4 F#4 D4 D3|2 A4 F#4 A3 D3|4 E4 D4 G#3 B2",
+    M4:"12 E4 C#4 A3 A2",
+    P2:"4 C#4 A3 G3 A2",
+    M5:"4 D4 D4 F#3 D3|3 F#4 D4 A3 D3|1 A4 F#4 A3 D3|4 D5 F#4 A3 D3|3 D5 F#4 A3 D3|1 D5 F#4 A3 D3",
+    M6:"2 E5 G4 B3 G3|2 D5 G4 B3 G3|4 D5 G4 B3 G3|4 A4 F#4 D4 D3|4 A4 F#4 D4 D3",
+    M7:"4 G#4 E4 B3 E3|2 G#4 E4 B3 E3|2 A4 E4 C#4 E3|4 B4 E4 D4 E3|3 C#5 A4 E4 E3|1 B4 E4 D4 E3",
+    M8:"12 A4 E4 C#4 A3",
+    RP:"4 A4 - - -",
+    M9:"4 D5:11 - - -|3 - F#4 A3 D3|1 - F#4 A3 D3|3 - F#4:4 A3:4 D3:4|1 A4 - - -|3 C#5 - - -|1 B4 - - -",
+    M10:"4 A4:12 - - -|3 - F#4 D4 D3|1 - F#4 D4 D3|4 - F#4 D4 D3|4 A4 F#4 D4 D3",
+    M11:"6 A4 F#4 D4 D3|2 E4 D4 A3 D3|4 D4 D4 F#3 D3|4 E4 D4 G#3 B2",
+    M12:"12 E4 C#4 A3 A2",
+    M13:"4 D4 D4 F#3 D3|2 F#4 D4 A3:4 D3:4|2 A4 F#4 - -|4 D5 F#4 A3 D3|3 A4 F#4 D4 D3|1 A4 F#4 D4 D3",
+    M14:"4 B4 G4 D4 G3|3 D5 G4 B3 G3|1 B4 G4 D4 G3|8 A4 F#4 D4 D3",
+    M15:"4 A4 F#4 A3 D3|2 D4 D4 F#3 D3|2 E4 D4 G3 D3|2 F#4 D4 A3 A2|2 F#4 D4 A3 A2|4 E4 C#4 G3 A2",
+    M16:"12 D4 D4 F#3 D3"
+  },
+  lines:[
+    {sys:1, m:[['P',100,162],['M1',162,395],['M2',395,607],['M3',607,837],['M4',837,928]]},
+    {sys:2, m:[['P2',85,135],['M5',135,376],['M6',376,594],['M7',594,836],['M8',836,928]]},
+    {sys:3, m:[['RP',85,139,'r'],['M9',139,412,'r'],['M10',412,628,'r'],['M11',628,827,'r'],['M12',827,928,'r']]},
+    {sys:4, m:[['P2',85,139,'r'],['M13',139,384,'r'],['M14',384,583,'r'],['M15',583,825,'r'],['M16',825,916,'r']]}
+  ],
+  intro:[[16,20]],
+  img:{w:937,h:1499,cropTop:120,cropBottom:1480},
+  systems:{1:[132,517],2:[495,885],3:[880,1162],4:[1182,1464]},
+  lyricRows:{1:[279,317,352,393],2:[644,679,716,748],3:[1036],4:[1325]}, lyricH:16
+});
+Object.assign(SONGS, { 538: { title:"죄짐을 지고서 곤하거든", tonic:"Ab", meter:"6/8", bpm:56, beatUnits:6, countBeats:2, verses:4 } });
+SONGS[538].data = buildSong({
+  E:{
+    M1:"3 Eb4 C4 Ab3 Ab2|1 Eb4 C4 Ab3 Ab2|2 Eb4 C4 Ab3 Ab2|2 Eb4 C4 Ab3 Ab2|2 C4 Ab3 Eb3 Ab2|2 Eb4 C4 Ab3 Ab2",
+    M2:"2 Ab4 C4 Ab3 Ab2|2 Bb4 Db4 Ab3 Ab2|2 C5 Eb4 Ab3 Ab2|4 Eb4 C4 Ab3 Ab2|2 Ab4 C4 Ab3 Ab2",
+    M3:"3 G4 Db4 Bb3 Eb3|1 G4 Db4 Bb3 Eb3|2 G4 Db4 Bb3 Eb3|2 G4 Db4 Bb3 Eb3|2 Ab4 Eb4 C4 Eb3|2 Bb4 Eb4 Db4 Eb3",
+    M4:"6 Ab4 Eb4 C4 Ab2|6 Eb4 C4 Ab3 Ab2",
+    M6:"2 Ab4 C4 Ab3 Ab2|2 Bb4 Db4 Ab3 Ab2|2 C5 Eb4 Ab3 Ab2|4 Eb4 C4 Ab3 Ab2|2 C5 Eb4 Ab3 Ab2",
+    M7:"3 Bb4 Eb4 G3 Bb2|1 Bb4 Eb4 G3 Bb2|2 Bb4 Eb4 G3 Bb2|2 Bb4 D4 F3 Bb2|2 Ab4 D4 F3 Bb2|2 F4 D4 Ab3 Bb2",
+    M8:"4 Eb4:12 Eb4:12 G3:12 Eb3|2 - - - Db3|4 - - - C3|2 - - - Bb2",
+    M9:"6 C5 Eb4 Ab3 Ab2|4 Ab4 C4 Eb3 Ab2|2 F4 Db4 Ab3 Ab2",
+    M10:"2 Eb4 C4 Ab3 Ab2|2 C4 Ab3 Eb3 Ab2|2 F4 Db4 Ab3 Ab2|6 Eb4 C4 Ab3 Ab2",
+    M11:"6 C5 Eb4 Ab3 Ab2|4 Db5 Eb4 Eb3 G2|2 C5 Eb4 Ab3 Ab2",
+    M12:"2 Bb4 D4 Ab3 Bb2|2 F4 D4 Ab3 Bb2|2 C5 D4 Ab3 Bb2|6 Bb4 Eb4 G3 Eb3",
+    M13:"6 C5 Eb4 Ab3 Ab2|4 Eb5 Gb4 C4 Ab2|2 Eb5 Gb4 Ab3 Ab2",
+    M14:"2 Db5 F4 Ab3 Db3|2 Ab4 F4 Ab3 Db3|2 Bb4 F4 F3 Db3|4f C5 E4 G3 C3|2 Db5 Bb4 Db4 Bb2",
+    M15:"3 C5 Ab4 Eb4 Eb3|1 Bb4 G4 Db4 Eb3|2 Ab4 Eb4 C4 Eb3|2 G4 Eb4 Bb3 Eb3|2 Ab4 Eb4 C4 Eb3|2 Bb4 Eb4 Db4 Eb3",
+    M16:"12 Ab4 Eb4 C4 Ab2"
+  },
+  lines:[
+    {sys:1, m:[['M1',122,363],['M2',363,567],['M3',567,799],['M4',799,932]]},
+    {sys:2, m:[['M1',140,333],['M6',333,528],['M7',528,760],['M8',760,932]]},
+    {sys:3, m:[['M9',100,296,'r'],['M10',296,514,'r'],['M11',514,707,'r'],['M12',707,932,'r']]},
+    {sys:4, m:[['M13',100,296,'r'],['M14',296,539,'r'],['M15',539,804,'r'],['M16',804,921,'r']]}
+  ],
+  intro:[[12,16]],
+  img:{w:941,h:1490,cropTop:100,cropBottom:1430},
+  systems:{1:[118,504],2:[487,873],3:[882,1153],4:[1141,1412]},
+  lyricRows:{1:[262,299,335,372],2:[633,670,706,744],3:[1034],4:[1277]}, lyricH:16
 });
 
 /* ---------------- 음 이름 ---------------- */
