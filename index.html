@@ -200,7 +200,7 @@ input{font:inherit}
 
 <script>
 "use strict";
-const BUILD = "2026-11-11-1";
+const BUILD = "2026-11-11-3";
 document.getElementById('build').textContent = 'build ' + BUILD;
 
 /* =====================================================================
@@ -1403,7 +1403,7 @@ SONGS[546].data = buildSong({
     M2:"4 F4 D4 Bb3 Bb2|4 Bb4 D4 Bb3 Bb2|8 Bb4 D4 Bb3 Bb2",
     M3:"3 G4 Eb4 Bb3 Eb3|1 G4 Eb4 Bb3 Eb3|3 G4 Eb4 Bb3 Eb3|1 Ab4 F4 Bb3 Eb3|3 Bb4 G4 Eb4 Eb3|1 Bb4 G4 Eb4 Eb3|3 Ab4 F4 Bb3 Eb3|1 G4 Eb4 Bb3 Eb3",
     M4:"4 G4 Eb4 Bb3 Bb2|4 F4 D4 Bb3 Bb2|8 F4 D4 Bb3 Bb2",
-    M7:"3 D5 F4 Bb3 Bb2|1 D5 F4 Bb3 Bb2|3 Bb4 D4 F3 Bb2|1 Bb4 D4 F3 Bb2|3 C5 Eb4 G3 C3|1 C5 Eb4 G3 C3|3 A4 Eb4 C4 F2|1 A4 Eb4 C4 F2",
+    M7:"3 D5 F4 Bb3 Bb2|1 D5 F4 Bb3 Bb2|3 Bb4 D4 F3 Bb2|1 Bb4 D4 F3 Bb2|3 C5 Eb4 G3 Eb3|1 C5 Eb4 G3 Eb3|3 A4 Eb4 F3 F3|1 A4 Eb4 F3 F3",
     M8:"12 Bb4 D4 F3 Bb2|4 - - - -",
     M9:"3 D5:8 D4 Bb3 Bb2|1 - D4 Bb3 Bb2|3 - D4 Bb3 Bb2|1 - D4 Bb3 Bb2|3 Bb4:8 D4 Bb3 Bb2|1 - D4 Bb3 Bb2|4 - D4 Bb3 Bb2",
     M10:"3 G4:8 Eb4 G3 Eb3|1 - Eb4 G3 Eb3|3 - Eb4 G3 Eb3|1 - Eb4 G3 Eb3|3 Bb4:8 D4 Bb3 G2|1 - D4 Bb3 G2|4 - D4 Bb3 G2",
@@ -1738,6 +1738,199 @@ SONGS[538].data = buildSong({
   img:{w:941,h:1490,cropTop:100,cropBottom:1430},
   systems:{1:[118,504],2:[487,873],3:[882,1153],4:[1141,1412]},
   lyricRows:{1:[262,299,335,372],2:[633,670,706,744],3:[1034],4:[1277]}, lyricH:16
+});
+
+Object.assign(SONGS, {
+  21:  { title:"다 찬양하여라", tonic:"G", meter:"3/4", bpm:104, beatUnits:4, countBeats:3, verses:3 },
+  150: { title:"갈보리산 위에" },
+  480: { title:"천국에서 만나보자" }
+});
+SONGS[21].data = buildSong({
+  E:{
+    M1:"4 G4 D4 B3 G3|4 G4 E4 B3 E3|4 D5 D4 A3 F#3",
+    M2:"6 B4 G4 D4 G3|2 A4 F#4 D4 D3|4 G4 E4 B3 E3",
+    M3:"4 F#4 D4 B3 B2|4 E4 C4 G3 C3|4 D4 B3 G3 G2",
+    M4:"4 E4 C4 G3 C3|4 F#4 C4 A3 A2|4 G4 B3 G3 E3",
+    M5:"4 A4:12 E4 E3 C3|4 - D4 F#3:8 D3:8|4 - C4 - -",
+    M6:"12 G4 D4 G3 G2",
+    M7:"4 D5 G4 B3 G3|4 D5 A4 A3 F#3|4 D5 G4 B3 G3",
+    M8:"12 E5 G4 C4 C3",
+    M9:"4 B4 G4 D4 G3|4 C5 G4 C4 E3|4 D5 A4 A3 F#3",
+    M10:"4 D5 G4 B3 G3|2 C5:4 E4 D4:4 A3:4|2 - F#4 - -|2 B4:4 G4:4 D4 B3|2 - - D4 G3",
+    M11:"12 A4 F#4 D4 D3",
+    M12:"4 D4 D4 G3 B2|4 E4 C4 G3 C3|4 F#4 C4 A3 A2",
+    M13:"4 G4 B3 G3 E3|4 A4 E4 E3 C3|4 B4 D#4 F#3 B2",
+    M14:"4 A4:12 E4:8 E3 C3:8|2 - - A3 -|2 - - G3 -|2 - D4 F#3 D3|2 - C4 - -",
+    M15:"12 G4 D4 G3 G2",
+    A1:"12 G4 E4 C4 C3", A2:"12 G4 D4 B3 G2"
+  },
+  lines:[
+    {sys:1, m:[['M1',140,313],['M2',313,459],['M3',459,606],['M4',606,754],['M5',754,902],['M6',902,1000]]},
+    {sys:2, m:[['M1',140,292],['M2',292,442],['M3',442,594],['M4',594,746],['M5',746,899],['M6',899,1000]]},
+    {sys:3, m:[['M7',140,330],['M8',330,456],['M9',456,645],['M10',645,875],['M11',875,1000]]},
+    {sys:4, m:[['M12',140,305],['M13',305,471],['M14',471,670],['M15',670,775]]}
+  ],
+  intro:[[17,21]],
+  amen:[['A1',4,780,890],['A2',4,890,988]],
+  img:{w:1080,h:1565,cropTop:150,cropBottom:1510},
+  systems:{1:[176,537],2:[495,855],3:[813,1175],4:[1131,1495]},
+  lyricRows:{1:[320,366,410],2:[643,685,725],3:[955,997,1039],4:[1281,1328,1365]}, lyricH:18
+});
+Object.assign(SONGS, { 32: { title:"만유의 주재", tonic:"Eb", meter:"4/4", bpm:88, beatUnits:4, countBeats:4, verses:3 } });
+SONGS[32].data = buildSong({
+  E:{
+    M1:"8 Eb4 Bb3 G3 Eb3|4 Eb4 Bb3 G3 Eb3|4 Eb4 Bb3 G3 Eb3",
+    M2:"4 F4 D4 Ab3 Bb2|4 D4 Bb3 F3 Bb2|8 Eb4 Bb3 G3 Eb3",
+    M3:"6 G4 Eb4 Bb3 Eb3|2 G4 Eb4 Bb3 D3|4 G4 Eb4 C4 C3|4 G4 E4 C4 Bb2",
+    M4:"4 Ab4 F4 C4 Ab2|4 F4 D4 Bb3 Bb2|8 G4 Eb4 Bb3 Eb3",
+    M5:"8 Bb4 Eb4 G3 Eb3|4 Eb5 Eb4 C4 Ab2|4 C5 Eb4 Ab3 C3",
+    M6:"8 Bb4 Eb4 G3 Eb3|4 Ab4 F4 Bb3:8 D3|4 G4 Eb4 - Eb3",
+    M7:"8 Ab4 D4 Bb3 F3|8 G4 Eb4 Bb3 Eb3",
+    M8:"16 F4 D4 Bb3 Bb2",
+    M9:"8 Bb4 Eb4 Bb3 G2|4 C5 Eb4 Ab3 Ab2|4 Bb4 Eb4 G3 Bb2",
+    M10:"4 Bb4 E4:8 G3:8 C3:8|4 G4 - - -|8 Ab4 F4 Ab3 F3",
+    M11:"8 Ab4 C4 F3 F2|4 Bb4 C4 E3 G2|4 Ab4 C4 G3 Ab2",
+    M12:"4 Ab4 D4:8 Ab3:8 Bb2:8|4 G4 - - -|4 G4 Eb4 Bb3 Eb3|4 G4 Eb4 Bb3 Eb3",
+    M13:"4 G4 Eb4 Bb3 Eb3|4 G4 Eb4 C4 C3|4 Bb4 Eb4 Db4 G2|4 Ab4 Eb4 C4 Ab2",
+    M14:"8 G4 Eb4 Bb3 Bb2|4 F4 D4 Bb3 Bb2:8|4 - - Ab3 -",
+    M15:"16 Eb4 Eb4 G3 Eb3",
+    A1:"8 Eb4 C4 Ab3 Ab2", A2:"8 Eb4 Bb3 G3 Eb3"
+  },
+  lines:[
+    {sys:1, m:[['M1',150,280],['M2',280,386],['M3',386,524],['M4',524,630],['M5',630,738],['M6',738,845],['M7',845,937],['M8',937,995]]},
+    {sys:2, m:[['M9',150,260],['M10',260,370],['M11',370,478],['M12',478,600],['M13',600,725],['M14',725,827],['M15',827,900]]}
+  ],
+  intro:[[11,15]],
+  amen:[['A1',2,903,945],['A2',2,945,987]],
+  img:{w:1080,h:1010,cropTop:170,cropBottom:930},
+  systems:{1:[190,575],2:[530,912]},
+  lyricRows:{1:[343,382,419],2:[679,721,761]}, lyricH:20
+});
+Object.assign(SONGS, { 95: { title:"나의 기쁨 나의 소망되시며", tonic:"D", meter:"4/4", bpm:88, beatUnits:4, countBeats:4, verses:5 } });
+SONGS[95].data = buildSong({
+  E:{
+    P:"4 D4 D4 F#3 D3",
+    M1:"6 D4 D4 F#3 D3|2 E4 C#4 G3 D3|4 F#4 D4 A3 D3|4 G4 E4 A3 D3",
+    M2:"6 A4 F#4 D4 D3|2 B4 G4 D4 D3|4 A4 F#4 D4 D3|4 G4 E4 B3 G2",
+    M3:"8 F#4 D4 A3 A2|4 E4 C#4 G3 A2|4 E4 C#4 G3 A2",
+    M4:"12 D4 D4 F#3 D3|4 A4 F#4 A3 D3",
+    M5:"8 D5 F#4 A3 D3|4 D5 F#4 A3 D3|4 E5 G4 A3 C#3",
+    M6:"8 D5 F#4 A3 D3|4 B4 E4 B3 E3|4 B4 D4 G#3 E3",
+    M7:"12 A4 C#4 A3 A2",
+    P2:"4 A4 F#4 A3 D3",
+    M8:"8 D5 F#4 A3 D3|4 D5 F#4 A3 D3|4 B4 G4 D4 D3",
+    M9:"8 A4 F#4 D4 D3|4 F#4 D4 A3 D3|4 A4 F#4 D4 F#3",
+    M10:"8 B4 D4 D4 G3|4 A4 D4 D4 F#3|4 F#4 D4 A3 D3",
+    M11:"8 E4 C#4 A3 A2|4 D4 D4:8 A3:8 D3:8|4 F#4 - - -",
+    M12:"6 A4 F#4 D4 D3|2 B4 G4 D4 D3|4 A4 F#4 D4 D3|4 D4 D4 A3 F#3",
+    M13:"8 E4 C#4 A3 A2|4 E4 C#4 A3 A2|4 E4 C#4 G3 A2",
+    M14:"12 D4 D4 F#3 D3",
+    A1:"8 D4 B3 G3 G2", A2:"8 D4 A3 F#3 D3"
+  },
+  lines:[
+    {sys:1, m:[['P',140,208],['M1',208,350],['M2',350,488],['M3',488,600],['M4',600,695],['M5',695,807],['M6',807,922],['M7',922,986]]},
+    {sys:2, m:[['P2',125,178],['M8',178,278],['M9',278,377],['M10',377,477],['M11',477,602],['M12',602,737],['M13',737,837],['M14',837,897]]}
+  ],
+  intro:[[12,16]],
+  amen:[['A1',2,900,942],['A2',2,942,985]],
+  img:{w:1080,h:988,cropTop:160,cropBottom:930},
+  systems:{1:[180,580],2:[520,918]},
+  lyricRows:{1:[320,353,382,411,444],2:[661,690,723,752,781]}, lyricH:15
+});
+Object.assign(SONGS, { 442: { title:"저 장미꽃 위에 이슬", tonic:"Ab", meter:"6/8", bpm:60, beatUnits:6, countBeats:2, verses:3 } });
+SONGS[442].data = buildSong({
+  E:{
+    P:"2 Eb4 C4 Ab3 Ab2",
+    M1:"2 Eb4 C4 Ab3 Ab2|2 C4 Ab3 Eb3 Ab2|2 Db4 Bb3 Eb3 Ab2|2 Eb4 C4 Ab3 Ab2|2 Ab4 C4 Ab3 C3|2 Bb4 Db4 G3 Eb3",
+    M2:"8 C5 Eb4 Ab3 Ab2|2 Bb4 Eb4 G3 Bb2|2 Ab4 Eb4 Ab3 C3",
+    M3:"4 Ab4 F4 Ab3 Db3|2 Ab4 F4 Ab3 Db3|2 Bb4 F4 Db4 Db3|2 Ab4 F4 Db4 Db3|2 F4 Db4 Ab3 Db3",
+    M4:"6 Ab4 C4 Ab3 Ab2|4 Eb4 C4 Ab3 Ab2",
+    P2:"1 Eb4 Db4 Bb3 Eb3|1 F4 Db4 Bb3 Eb3",
+    M5:"4 Bb4 Db4 G3 Eb3|2 Bb4 Db4 G3 Eb3|4 G4 Db4 Bb3 Eb3|1 F4 Db4 Ab3 Eb3|1 G4 Db4 Bb3 Eb3",
+    M6:"4 Ab4 Eb4 Ab3 C3|2 Bb4 Eb4 G3 Eb3|4 C5 Eb4 Ab3 Ab2|2 C5 Eb4 Ab3 Ab2",
+    M7:"4 Bb4 D4 Ab3 Bb2|2 C5 D4 Ab3 Bb2|4 Bb4 D4 G3 Bb2|2 Ab4 D4 Bb3 Bb2",
+    M8:"4 G4 Eb4 Bb3 Eb3:8|2 Ab4 F4 C4 -|2f Bb4 G4 Db4 Eb3",
+    RP:"3f C5 Eb4 Ab3 Eb3|1 Bb4 Db4 G3 Eb3",
+    M9:"4 Ab4 C4 Eb3 Ab2|2 Ab4 C4 Eb3 Ab2|2 Ab4 C4 Eb3 Ab2|2 G4 C4 Eb3 Ab2|2 F4 C4 Eb3 Ab2",
+    M10:"4 G4 Db4 Eb3 Bb2|2 G4 Db4 Eb3 Bb2|4 G4 Db4 Bb3 Eb3|1 Eb4 Db4 G3 Eb3|1 Eb4 Db4 G3 Eb3",
+    M11:"4 Db5 F4 Ab3 Db3|2 Db5 F4 Ab3 Db3|2 Db5 F4 Ab3 Db3|2 C5 Eb4 Ab3 Eb3|2 B4 D4 G3 Eb3",
+    M12:"6 C5 Eb4 Ab3 Ab2|4 C5 Eb4 Ab3 Ab2",
+    P4:"1 Ab4 C4 Ab3 Ab2|1 Bb4 Db4 Ab3 Ab2",
+    M13:"4 C5 Eb4 Ab3 Ab2|2 C5 Eb4 Ab3 Ab2|2 Bb4 E4 G3 C3|2 Bb4 E4 G3 C3|2 G4 E4 Bb3 C3",
+    M14:"4 Ab4 F4 C4 F3|2 G4 F4 C4 Eb3|4f Ab4 F4 Db4 Db3|2 F4 Db4 Ab3 Db3",
+    M15:"1 Eb4 C4 Ab3 Ab2|3 Ab4 C4 Ab3 Ab2|2 Ab4 C4 Ab3 Eb3|2 G4 Db4 Bb3 Eb3|2 Bb4 Db4 G3 Eb3|2 Bb4 Db4 G3 Eb3",
+    M16:"10 Ab4 C4 Ab3 Ab2"
+  },
+  lines:[
+    {sys:1, m:[['P',150,250],['M1',250,483],['M2',483,671],['M3',671,875],['M4',875,996]]},
+    {sys:2, m:[['P2',150,245],['M5',245,463],['M6',463,654],['M7',654,851],['M8',851,996]]},
+    {sys:3, m:[['RP',150,257,'r'],['M9',257,457,'r'],['M10',457,646,'r'],['M11',646,878,'r'],['M12',878,996,'r']]},
+    {sys:4, m:[['P4',150,245,'r'],['M13',245,455,'r'],['M14',455,637,'r'],['M15',637,872,'r'],['M16',872,984,'r']]}
+  ],
+  intro:[[15,20]],
+  img:{w:1080,h:1591,cropTop:120,cropBottom:1480},
+  systems:{1:[150,515],2:[515,880],3:[880,1160],4:[1170,1450]},
+  lyricRows:{1:[305,348,388],2:[667,706,745],3:[1042],4:[1321]}, lyricH:17
+});
+Object.assign(SONGS, { 492: { title:"잠시 세상에 내가 살면서", tonic:"Ab", meter:"4/4", bpm:92, beatUnits:4, countBeats:4, verses:4 } });
+SONGS[492].data = buildSong({
+  E:{
+    P:"3 Eb4 C4 Ab3 Ab2|1 Eb4 C4 Ab3 Ab2",
+    M1:"4 Ab4 C4 Eb3 Ab2|4 Ab4 C4 Eb3 Ab2|4 Ab4 C4 Eb3 Ab2|3 Ab4 C4 Eb3 Ab2|1 Bb4 Db4 Eb3 Ab2",
+    M2:"4 C5 Eb4 Ab3 Ab2|4 C5 Eb4 Ab3 Ab2|4 C5 Eb4 Ab3 Ab2|3 C5 Eb4 Ab3 Ab2|1 Bb4 E4 Ab3 C3",
+    M3:"6 Ab4 F4 Db4 Db3|2 Bb4 F4 Db4 Db3|4 Ab4 F4 Db4 Db3|4 F4 Db4 Ab3 Db3",
+    M4:"4 F4 Db4 Ab3 Ab2|8 Eb4 C4 Ab3 Ab2",
+    P2:"3 Ab4 C4 Ab3 Ab2|1 Ab4 Eb4 Ab3 C3",
+    M5:"4 G4 Eb4 Bb3 Eb3|4 Bb4 Db4 G3 Eb3|4 Bb4 Db4 G3 Eb3|3 Bb4 Db4 G3 Eb3|1 Bb4 Db4 G3 Eb3",
+    M6:"4 Ab4 C4 Ab3 Ab2|4 C5 Eb4 Ab3 Ab2|4 C5 Eb4 Ab3 Ab2|3 C5 Eb4 Ab3 Ab2|1 C5 Eb4 Ab3 Ab2",
+    M7:"4 Bb4 D4 Ab3 Bb2|4 Bb4 D4 Ab3 Bb2|4 C5 D4 F3 Bb2|4 D5 Ab4 Bb3 Bb2",
+    M8:"8 Eb5 G4 Bb3 Eb3|4 Eb5 G4 Bb3 Eb3",
+    RP:"3 Eb5 G4 Bb3 Eb3|1 Db5 F4 Bb3 Eb3",
+    M10:"2 Ab4 F4 Db4 Db3|6 Ab4 F4 Db4 Db3|4 Ab4 F4 Db4 Db3|3 G4 Eb4 Db4 Db3|1 F4 Db4 Ab3 Db3",
+    M11:"4 Eb4 C4 Ab3 Ab2|4 Eb4 C4 Ab3 Ab2|4 Ab4 Eb4 Ab3 C3|4 C5 Eb4 Ab3 Ab2",
+    M12:"4 C5 Eb4 Ab3 Eb3|8 Bb4 Eb4 G3 Eb3",
+    M15:"4 Eb4 C4 Ab3 Eb3|4 Eb4 C4 Ab3 Eb3|4 Ab4 Eb4 C4 Eb3|4 C5 Eb4 Ab3 Eb3",
+    M16:"8 Bb4 Db4 G3 Eb3|4f Ab4 C4 Ab3 Ab2"
+  },
+  lines:[
+    {sys:1, m:[['P',150,280],['M1',280,489],['M2',489,700],['M3',700,881],['M4',881,996]]},
+    {sys:2, m:[['P2',150,255],['M5',255,469],['M6',469,683],['M7',683,878],['M8',878,996]]},
+    {sys:3, m:[['RP',150,255,'r'],['M2',255,473,'r'],['M10',473,691,'r'],['M11',691,876,'r'],['M12',876,996,'r']]},
+    {sys:4, m:[['RP',150,255,'r'],['M2',255,472,'r'],['M10',472,689,'r'],['M15',689,874,'r'],['M16',874,984,'r']]}
+  ],
+  intro:[[15,20]],
+  img:{w:1080,h:1588,cropTop:150,cropBottom:1500},
+  systems:{1:[200,560],2:[575,940],3:[965,1235],4:[1225,1500]},
+  lyricRows:{1:[356,396,432,471],2:[726,765,802,844],3:[1118],4:[1377]}, lyricH:17
+});
+Object.assign(SONGS, { 508: { title:"우리가 지금은 나그네 되어도", tonic:"Eb", meter:"4/4", bpm:96, beatUnits:4, countBeats:4, verses:3 } });
+SONGS[508].data = buildSong({
+  E:{
+    P:"2 Bb3 G3 G3 Eb3|2 C4 Ab3 Ab3 Eb3|2 Eb4 Bb3 G3 Eb3",
+    M1:"3 G4 Eb4 Bb3 Eb3|1 G4 Eb4 Bb3 Eb3|6 G4 Eb4 Bb3 Eb3|2 G4 Eb4 Bb3 Eb3|2 F4 Bb3 Ab3 Eb3|2 Eb4 Bb3 G3 Eb3",
+    M2:"3 Ab4 D4 Bb3 Bb2|1 Ab4 D4 Bb3 Bb2|6 Ab4 D4 Bb3 Bb2|2 Ab4 F4 Bb3 Bb2|2 G4 Eb4 Bb3 Bb2|2 F4 D4 Bb3 Bb2",
+    M4:"3 Bb4 Eb4 G3 Eb3|1 Bb4 D4 Ab3 Bb2|6 Bb4 Eb4 G3 Eb3",
+    M5:"3 G4 Eb4 Bb3 Eb3|1 G4 Eb4 Bb3 Eb3|6 G4 Eb4 Bb3 Eb3|2 G4 Eb4 Bb3 Eb3|2 F4 D4 Bb3 Bb2|2 Eb4 C4 Ab3 Ab2",
+    M6:"3 Eb5 Eb4 C4 Ab3|1 Eb5 Eb4 C4 Ab3|6f Eb5 Eb4 C4 Ab3|2 Eb5 Eb4 Ab3 C3|2 D5 Eb4 Ab3 Bb2|2 C5 Eb4 Ab3 Ab2",
+    M7:"2 Bb4 Eb4 G3 Bb2|2 C5 Eb4 Ab3 Bb2|8 G4 Eb4 Bb3 Bb2|4 F4 D4 Ab3 Bb2",
+    M8:"10 Eb4 Bb3 G3 Eb3",
+    RP:"2 Bb4 G4 Bb3 Eb3|2 Bb4 G4 Bb3 Eb3|2 Bb4 G4 Bb3 Eb3",
+    M9:"8 D5 F4 Ab3 Bb2|2 D5 F4 Ab3 Bb2|2 D5 F4 Ab3 Bb2|2 C5 F4 Ab3 Bb2|2 Bb4 F4 Ab3 Bb2",
+    M10:"10 Eb5 G4 Bb3 Eb3|2 G4 Eb4 Bb3 Eb3|2 F4 D4 Bb3 Eb3|2 G4 Eb4 Bb3 Eb3",
+    M11:"2 Ab4 D4 Bb3 Bb2|2 Bb4 Eb4 Bb3 Bb2|8 D5 F4 F3 Bb2|4 C5 Eb4 A3 F3",
+    M12:"10 Bb4 D4 Bb3 Bb2",
+    P4:"2 Bb4 D4 Bb3 Bb2|2 Bb4 Eb4 Bb3 C3|2 Bb4 F4 Bb3 D3"
+  },
+  lines:[
+    {sys:1, m:[['P',150,280],['M1',280,487],['M2',487,686],['M2',686,887],['M4',887,994]]},
+    {sys:2, m:[['P',150,288],['M5',288,512],['M6',512,735],['M7',735,896],['M8',896,994]]},
+    {sys:3, m:[['RP',150,269,'r'],['M9',269,478,'r'],['M10',478,692,'r'],['M11',692,881,'r'],['M12',881,994,'r']]},
+    {sys:4, m:[['P4',150,266,'r'],['M5',266,502,'r'],['M6',502,727,'r'],['M7',727,887,'r'],['M8',887,983,'r']]}
+  ],
+  intro:[[15,20]],
+  img:{w:1080,h:1610,cropTop:150,cropBottom:1500},
+  systems:{1:[160,520],2:[540,900],3:[915,1185],4:[1200,1470]},
+  lyricRows:{1:[331,368,407],2:[702,742,784],3:[1064],4:[1352]}, lyricH:17
 });
 
 /* ---------------- 음 이름 ---------------- */
